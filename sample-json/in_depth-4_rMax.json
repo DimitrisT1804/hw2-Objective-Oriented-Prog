@@ -1,0 +1,492 @@
+{
+  "type": "max",
+  "children": [
+    {
+      "type": "leaf",
+      "value": 7.56
+    },
+    {
+      "type": "min",
+      "children": [
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 7.01
+            },
+            {
+              "type": "leaf",
+              "value": -9.15
+            },
+            {
+              "type": "leaf",
+              "value": -18.95
+            },
+            {
+              "type": "leaf",
+              "value": 9.59
+            },
+            {
+              "type": "leaf",
+              "value": 12.94
+            },
+            {
+              "type": "leaf",
+              "value": 3.65
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -4.98
+            },
+            {
+              "type": "leaf",
+              "value": 14.17
+            },
+            {
+              "type": "leaf",
+              "value": 5.94
+            },
+            {
+              "type": "leaf",
+              "value": -19.11
+            },
+            {
+              "type": "leaf",
+              "value": -2.16
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 17.43
+            },
+            {
+              "type": "leaf",
+              "value": -7.82
+            },
+            {
+              "type": "leaf",
+              "value": -17.51
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 8.31
+            },
+            {
+              "type": "leaf",
+              "value": 12.1
+            },
+            {
+              "type": "leaf",
+              "value": -5.59
+            },
+            {
+              "type": "leaf",
+              "value": 16.37
+            },
+            {
+              "type": "leaf",
+              "value": 12.98
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 16.89
+            },
+            {
+              "type": "leaf",
+              "value": -14.61
+            },
+            {
+              "type": "leaf",
+              "value": 17.4
+            },
+            {
+              "type": "leaf",
+              "value": -3.43
+            },
+            {
+              "type": "leaf",
+              "value": 17.34
+            },
+            {
+              "type": "leaf",
+              "value": -4.77
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "min",
+      "children": [
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 1.13
+            },
+            {
+              "type": "leaf",
+              "value": 16.75
+            },
+            {
+              "type": "leaf",
+              "value": 19.6
+            },
+            {
+              "type": "leaf",
+              "value": 13.38
+            }
+          ]
+        },
+        {
+          "type": "leaf",
+          "value": -7.0
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 6.27
+            },
+            {
+              "type": "leaf",
+              "value": 13.31
+            },
+            {
+              "type": "leaf",
+              "value": -9.25
+            },
+            {
+              "type": "leaf",
+              "value": -15.49
+            },
+            {
+              "type": "leaf",
+              "value": 6.59
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -6.42
+            },
+            {
+              "type": "leaf",
+              "value": -10.47
+            },
+            {
+              "type": "leaf",
+              "value": 10.47
+            },
+            {
+              "type": "leaf",
+              "value": 4.29
+            },
+            {
+              "type": "leaf",
+              "value": 0.71
+            },
+            {
+              "type": "leaf",
+              "value": -17.56
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -4.07
+            },
+            {
+              "type": "leaf",
+              "value": 2.79
+            },
+            {
+              "type": "leaf",
+              "value": -11.3
+            },
+            {
+              "type": "leaf",
+              "value": 17.78
+            },
+            {
+              "type": "leaf",
+              "value": 12.97
+            },
+            {
+              "type": "leaf",
+              "value": -3.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "leaf",
+      "value": 0.61
+    },
+    {
+      "type": "min",
+      "children": [
+        {
+          "type": "leaf",
+          "value": 7.03
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 13.9
+            },
+            {
+              "type": "leaf",
+              "value": -1.48
+            },
+            {
+              "type": "leaf",
+              "value": -6.65
+            },
+            {
+              "type": "leaf",
+              "value": 18.33
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 19.11
+            },
+            {
+              "type": "leaf",
+              "value": -10.61
+            },
+            {
+              "type": "leaf",
+              "value": -1.79
+            },
+            {
+              "type": "leaf",
+              "value": 3.31
+            },
+            {
+              "type": "leaf",
+              "value": -13.49
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -5.1
+            },
+            {
+              "type": "leaf",
+              "value": -17.69
+            },
+            {
+              "type": "leaf",
+              "value": 8.22
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -9.89
+            },
+            {
+              "type": "leaf",
+              "value": -12.63
+            },
+            {
+              "type": "leaf",
+              "value": -16.11
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -14.11
+            },
+            {
+              "type": "leaf",
+              "value": 9.7
+            },
+            {
+              "type": "leaf",
+              "value": -4.99
+            },
+            {
+              "type": "leaf",
+              "value": 16.04
+            },
+            {
+              "type": "leaf",
+              "value": -11.35
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "min",
+      "children": [
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 9.66
+            },
+            {
+              "type": "leaf",
+              "value": -10.34
+            },
+            {
+              "type": "leaf",
+              "value": 16.59
+            },
+            {
+              "type": "leaf",
+              "value": -13.95
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": 5.34
+            },
+            {
+              "type": "leaf",
+              "value": 0.31
+            },
+            {
+              "type": "leaf",
+              "value": 7.98
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -17.21
+            },
+            {
+              "type": "leaf",
+              "value": -11.09
+            },
+            {
+              "type": "leaf",
+              "value": -11.57
+            },
+            {
+              "type": "leaf",
+              "value": -19.52
+            },
+            {
+              "type": "leaf",
+              "value": -8.96
+            },
+            {
+              "type": "leaf",
+              "value": -13.87
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -2.71
+            },
+            {
+              "type": "leaf",
+              "value": -7.01
+            },
+            {
+              "type": "leaf",
+              "value": -15.98
+            },
+            {
+              "type": "leaf",
+              "value": -19.3
+            },
+            {
+              "type": "leaf",
+              "value": -12.84
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -16.53
+            },
+            {
+              "type": "leaf",
+              "value": 3.51
+            },
+            {
+              "type": "leaf",
+              "value": 16.3
+            },
+            {
+              "type": "leaf",
+              "value": -17.6
+            },
+            {
+              "type": "leaf",
+              "value": -18.22
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
