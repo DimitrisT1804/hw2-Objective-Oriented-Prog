@@ -48,6 +48,8 @@ public class Tree
 		root = CreateMinMaxTree(jsontry);
 		System.out.println(root);
 		postorderTraversal(root);
+		root = MinMaxImplementation(root);
+		postorderTraversalValues(root);
 	}
 	
 	
@@ -103,7 +105,8 @@ public class Tree
 	}
 	
 	
-	public void postorderTraversal(TreeLeaves node) {
+	public void postorderTraversal(TreeLeaves node) 
+	{
 	    if (node instanceof MaximizerNode) {
 	        MaximizerNode maxNode = (MaximizerNode) node;
 	        for (int i = 0; i < maxNode.getChildrenSize(); i++) {
@@ -120,5 +123,60 @@ public class Tree
 	        TreeLeaves leavesNode = (TreeLeaves) node;
 	        System.out.print(leavesNode.getValue() + " ");
 	    }
+	}
+	
+	public TreeLeaves MinMaxImplementation(TreeLeaves root)
+	{
+		//TreeLeaves node = null;
+		if (root instanceof MaximizerNode)
+		{
+			MaximizerNode newNode;
+			newNode = (MaximizerNode) root;
+			for(int i = 0; i < newNode.ChildrenArray.length; i++)
+			{
+				MinMaxImplementation(newNode.ChildrenArray[i]);
+			}
+			//newNode = (MaximizerNode) root;
+			newNode.SetValue(newNode.getMax());
+			System.out.println("Value is: "+newNode.getValue());
+			return newNode;
+		}
+		
+		else if (root instanceof MinimizerNode)
+		{
+			MinimizerNode newNode;
+			newNode = (MinimizerNode) root;
+			for(int i = 0; i < newNode.ChildrenArray.length; i++)
+			{
+				MinMaxImplementation(newNode.ChildrenArray[i]);
+			}
+			//newNode = (MaximizerNode) root;
+			newNode.SetValue(newNode.getMin());
+			//System.out.println("Value is: "+newNode.getValue());
+			return newNode;
+		}
+		
+		else if(root instanceof TreeLeaves)
+		{
+			return root;
+		}
+		return null;
+	}
+	
+	public void postorderTraversalValues(TreeLeaves node) 
+	{
+		TreeNode newNode;
+		if(node == null)
+			return;
+		
+		if(node instanceof TreeNode)
+		{		
+			newNode = (TreeNode) node;
+			for(int i = 0; i < newNode.ChildrenArray.length; i++)
+			{
+				postorderTraversalValues(newNode.ChildrenArray[i]);
+			}
+		}
+		System.out.print(node.getValue() + " ");
 	}
 }

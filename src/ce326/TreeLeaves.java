@@ -21,4 +21,9 @@ public class TreeLeaves
 	{
 		return NodeValue;
 	}
+	
+	public void SetValue(double NodeValue)
+	{
+		this.NodeValue = NodeValue;
+	}
 }

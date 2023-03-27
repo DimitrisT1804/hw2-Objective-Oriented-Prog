@@ -1,0 +1,947 @@
+{
+  "type": "max",
+  "children": [
+    {
+      "type": "min",
+      "children": [
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "leaf",
+              "value": -13.33
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 15.36
+                },
+                {
+                  "type": "leaf",
+                  "value": 17.17
+                },
+                {
+                  "type": "leaf",
+                  "value": -19.63
+                },
+                {
+                  "type": "leaf",
+                  "value": 6.45
+                },
+                {
+                  "type": "leaf",
+                  "value": 18.4
+                },
+                {
+                  "type": "leaf",
+                  "value": 10.71
+                },
+                {
+                  "type": "leaf",
+                  "value": -7.97
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 7.31
+                },
+                {
+                  "type": "leaf",
+                  "value": 11.81
+                },
+                {
+                  "type": "leaf",
+                  "value": 11.57
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -0.86
+                },
+                {
+                  "type": "leaf",
+                  "value": 11.56
+                },
+                {
+                  "type": "leaf",
+                  "value": 6.36
+                },
+                {
+                  "type": "leaf",
+                  "value": 12.98
+                },
+                {
+                  "type": "leaf",
+                  "value": 17.24
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -0.23
+                },
+                {
+                  "type": "leaf",
+                  "value": 7.24
+                },
+                {
+                  "type": "leaf",
+                  "value": -16.0
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 17.46
+                },
+                {
+                  "type": "leaf",
+                  "value": -10.35
+                },
+                {
+                  "type": "leaf",
+                  "value": 1.46
+                },
+                {
+                  "type": "leaf",
+                  "value": 18.17
+                },
+                {
+                  "type": "leaf",
+                  "value": -11.22
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 10.39
+                },
+                {
+                  "type": "leaf",
+                  "value": -4.66
+                },
+                {
+                  "type": "leaf",
+                  "value": -19.82
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -14.99
+                },
+                {
+                  "type": "leaf",
+                  "value": 2.63
+                },
+                {
+                  "type": "leaf",
+                  "value": -19.01
+                },
+                {
+                  "type": "leaf",
+                  "value": 0.94
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -4.2
+                },
+                {
+                  "type": "leaf",
+                  "value": -1.71
+                },
+                {
+                  "type": "leaf",
+                  "value": -7.32
+                },
+                {
+                  "type": "leaf",
+                  "value": -1.08
+                },
+                {
+                  "type": "leaf",
+                  "value": -9.58
+                },
+                {
+                  "type": "leaf",
+                  "value": 11.3
+                },
+                {
+                  "type": "leaf",
+                  "value": -16.76
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 12.56
+                },
+                {
+                  "type": "leaf",
+                  "value": -16.27
+                },
+                {
+                  "type": "leaf",
+                  "value": -9.39
+                },
+                {
+                  "type": "leaf",
+                  "value": -1.35
+                },
+                {
+                  "type": "leaf",
+                  "value": 1.06
+                },
+                {
+                  "type": "leaf",
+                  "value": -4.66
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -4.42
+                },
+                {
+                  "type": "leaf",
+                  "value": 19.02
+                },
+                {
+                  "type": "leaf",
+                  "value": 8.43
+                },
+                {
+                  "type": "leaf",
+                  "value": -4.99
+                },
+                {
+                  "type": "leaf",
+                  "value": 13.89
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 4.31
+                },
+                {
+                  "type": "leaf",
+                  "value": 12.22
+                },
+                {
+                  "type": "leaf",
+                  "value": -13.63
+                },
+                {
+                  "type": "leaf",
+                  "value": 12.11
+                },
+                {
+                  "type": "leaf",
+                  "value": 6.14
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 18.14
+                },
+                {
+                  "type": "leaf",
+                  "value": -18.72
+                },
+                {
+                  "type": "leaf",
+                  "value": 9.19
+                },
+                {
+                  "type": "leaf",
+                  "value": -7.67
+                },
+                {
+                  "type": "leaf",
+                  "value": -2.8
+                },
+                {
+                  "type": "leaf",
+                  "value": 14.34
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -9.84
+                },
+                {
+                  "type": "leaf",
+                  "value": -16.29
+                },
+                {
+                  "type": "leaf",
+                  "value": 14.89
+                },
+                {
+                  "type": "leaf",
+                  "value": 19.84
+                },
+                {
+                  "type": "leaf",
+                  "value": -11.09
+                },
+                {
+                  "type": "leaf",
+                  "value": 9.9
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -15.3
+                },
+                {
+                  "type": "leaf",
+                  "value": -15.73
+                },
+                {
+                  "type": "leaf",
+                  "value": -11.27
+                },
+                {
+                  "type": "leaf",
+                  "value": 18.01
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -2.87
+                },
+                {
+                  "type": "leaf",
+                  "value": 13.59
+                },
+                {
+                  "type": "leaf",
+                  "value": 2.38
+                },
+                {
+                  "type": "leaf",
+                  "value": 0.5
+                },
+                {
+                  "type": "leaf",
+                  "value": 16.84
+                },
+                {
+                  "type": "leaf",
+                  "value": 7.95
+                },
+                {
+                  "type": "leaf",
+                  "value": -8.07
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "min",
+      "children": [
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -9.36
+                },
+                {
+                  "type": "leaf",
+                  "value": -10.15
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -9.72
+                },
+                {
+                  "type": "leaf",
+                  "value": 11.51
+                },
+                {
+                  "type": "leaf",
+                  "value": 5.11
+                },
+                {
+                  "type": "leaf",
+                  "value": -14.75
+                },
+                {
+                  "type": "leaf",
+                  "value": -17.57
+                },
+                {
+                  "type": "leaf",
+                  "value": 7.85
+                },
+                {
+                  "type": "leaf",
+                  "value": -5.21
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -18.91
+                },
+                {
+                  "type": "leaf",
+                  "value": 14.85
+                },
+                {
+                  "type": "leaf",
+                  "value": 10.03
+                },
+                {
+                  "type": "leaf",
+                  "value": 9.51
+                },
+                {
+                  "type": "leaf",
+                  "value": 0.22
+                }
+              ]
+            },
+            {
+              "type": "leaf",
+              "value": -10.28
+            },
+            {
+              "type": "leaf",
+              "value": 0.9
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -5.83
+                },
+                {
+                  "type": "leaf",
+                  "value": -17.06
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -10.72
+                },
+                {
+                  "type": "leaf",
+                  "value": 8.95
+                },
+                {
+                  "type": "leaf",
+                  "value": 13.53
+                },
+                {
+                  "type": "leaf",
+                  "value": 19.49
+                },
+                {
+                  "type": "leaf",
+                  "value": -4.76
+                },
+                {
+                  "type": "leaf",
+                  "value": -9.79
+                },
+                {
+                  "type": "leaf",
+                  "value": 2.93
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 17.99
+                },
+                {
+                  "type": "leaf",
+                  "value": 13.2
+                },
+                {
+                  "type": "leaf",
+                  "value": 0.58
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 16.33
+                },
+                {
+                  "type": "leaf",
+                  "value": -11.02
+                },
+                {
+                  "type": "leaf",
+                  "value": -18.96
+                },
+                {
+                  "type": "leaf",
+                  "value": 12.65
+                },
+                {
+                  "type": "leaf",
+                  "value": -16.68
+                },
+                {
+                  "type": "leaf",
+                  "value": 11.97
+                },
+                {
+                  "type": "leaf",
+                  "value": 18.12
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "min",
+      "children": [
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 12.58
+                },
+                {
+                  "type": "leaf",
+                  "value": 12.15
+                },
+                {
+                  "type": "leaf",
+                  "value": 11.86
+                },
+                {
+                  "type": "leaf",
+                  "value": 11.76
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 10.65
+                },
+                {
+                  "type": "leaf",
+                  "value": -6.06
+                },
+                {
+                  "type": "leaf",
+                  "value": 15.69
+                },
+                {
+                  "type": "leaf",
+                  "value": 17.35
+                },
+                {
+                  "type": "leaf",
+                  "value": 0.9
+                },
+                {
+                  "type": "leaf",
+                  "value": 5.2
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 15.47
+                },
+                {
+                  "type": "leaf",
+                  "value": 5.19
+                },
+                {
+                  "type": "leaf",
+                  "value": -1.55
+                },
+                {
+                  "type": "leaf",
+                  "value": -15.96
+                },
+                {
+                  "type": "leaf",
+                  "value": 18.39
+                },
+                {
+                  "type": "leaf",
+                  "value": -13.98
+                },
+                {
+                  "type": "leaf",
+                  "value": -16.42
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 15.8
+                },
+                {
+                  "type": "leaf",
+                  "value": -10.65
+                },
+                {
+                  "type": "leaf",
+                  "value": -15.46
+                },
+                {
+                  "type": "leaf",
+                  "value": 8.83
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 12.07
+                },
+                {
+                  "type": "leaf",
+                  "value": -7.65
+                },
+                {
+                  "type": "leaf",
+                  "value": 17.94
+                },
+                {
+                  "type": "leaf",
+                  "value": 13.48
+                },
+                {
+                  "type": "leaf",
+                  "value": 2.9
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -12.51
+                },
+                {
+                  "type": "leaf",
+                  "value": 7.96
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 2.26
+                },
+                {
+                  "type": "leaf",
+                  "value": -12.11
+                }
+              ]
+            },
+            {
+              "type": "leaf",
+              "value": -7.91
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "min",
+      "children": [
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -10.22
+                },
+                {
+                  "type": "leaf",
+                  "value": -6.54
+                },
+                {
+                  "type": "leaf",
+                  "value": 11.02
+                },
+                {
+                  "type": "leaf",
+                  "value": -18.51
+                }
+              ]
+            },
+            {
+              "type": "leaf",
+              "value": -18.0
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 9.3
+                },
+                {
+                  "type": "leaf",
+                  "value": 0.9
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -18.3
+                },
+                {
+                  "type": "leaf",
+                  "value": 14.71
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 8.63
+                },
+                {
+                  "type": "leaf",
+                  "value": 1.78
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "max",
+          "children": [
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 15.8
+                },
+                {
+                  "type": "leaf",
+                  "value": 2.12
+                },
+                {
+                  "type": "leaf",
+                  "value": 12.05
+                },
+                {
+                  "type": "leaf",
+                  "value": -12.95
+                },
+                {
+                  "type": "leaf",
+                  "value": 3.2
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": 14.37
+                },
+                {
+                  "type": "leaf",
+                  "value": 6.67
+                },
+                {
+                  "type": "leaf",
+                  "value": 10.32
+                },
+                {
+                  "type": "leaf",
+                  "value": 16.19
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -10.75
+                },
+                {
+                  "type": "leaf",
+                  "value": -19.21
+                },
+                {
+                  "type": "leaf",
+                  "value": -13.9
+                },
+                {
+                  "type": "leaf",
+                  "value": -14.62
+                },
+                {
+                  "type": "leaf",
+                  "value": 8.41
+                },
+                {
+                  "type": "leaf",
+                  "value": -3.94
+                }
+              ]
+            },
+            {
+              "type": "min",
+              "children": [
+                {
+                  "type": "leaf",
+                  "value": -10.7
+                },
+                {
+                  "type": "leaf",
+                  "value": -17.49
+                },
+                {
+                  "type": "leaf",
+                  "value": -2.97
+                },
+                {
+                  "type": "leaf",
+                  "value": -11.58
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
