@@ -7,7 +7,7 @@ import org.json.*;
 
 public class Tree 
 {
-	private TreeNode root;		// The root of the tree
+	private TreeLeaves root;		// The root of the tree
 	Tree newTree;
 	JSONObject jsontry;
 	
@@ -82,10 +82,9 @@ public class Tree
 		root = CreateMinMaxTree(jsontry);
 		System.out.println(root);
 		postorderTraversal(root);
-		root = MinMaxImplementation(root);
-		postorderTraversalValues(root);
+		//root = MinMaxImplementation(root);
+		//postorderTraversalValues(root);
 	}
-	
 	
 	public TreeLeaves CreateMinMaxTree(JSONObject jsontry)
 	{
@@ -195,6 +194,15 @@ public class Tree
 			return root;
 		}
 		return null;
+	}
+	
+	
+	// mallon den xreiazete kapos allios prepei na to kalo kai mallon prepei na kano initialize to root
+	public void MinMaxImplementationCall()
+	{
+		root = MinMaxImplementation(root);
+		postorderTraversalValues(root);
+	
 	}
 	
 	public void postorderTraversalValues(TreeLeaves node) 
