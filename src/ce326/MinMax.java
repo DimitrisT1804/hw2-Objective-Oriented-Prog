@@ -1,6 +1,7 @@
 package ce326;
 
 import java.util.*;
+import java.io.*;
 
 public class MinMax 
 {
@@ -17,8 +18,11 @@ public class MinMax
 			input = sc.nextLine();
 			System.out.println(input);
 		//}
+		File myFile = new File(input);
 		
-		Tree newTree = new Tree(input);
+		//Tree newTree = new Tree(myFile);
+		
+		Tree newTree = new Tree(myFile);
 		
 		
 	}

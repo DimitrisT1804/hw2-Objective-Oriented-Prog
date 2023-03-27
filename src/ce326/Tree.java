@@ -1,5 +1,8 @@
 package ce326;
 
+import java.io.*;
+import java.util.*;
+
 import org.json.*;
 
 public class Tree 
@@ -9,19 +12,50 @@ public class Tree
 	JSONObject jsontry;
 	
 	// Constructor that has input a String in JSON Format
-	public Tree (String jsonString)
+//	public Tree (String jsonString)
+//	{
+//		try		// kano dokimi ean eiani JSONString kai an lavo to diko mou exception ektipono antistoixa
+//		{
+//			Error(jsonString);		
+//		}
+//		catch(TreeExceptions ex)
+//		{
+//			System.out.println("Caught exception: " + ex.toString());	// mallon prepei na ektipono kai to exception
+//			//System.out.println("\u001B[31mCaught exception: " + ex.toString() + "\u001B[0m");
+//		}
+//		
+//		System.out.println("Ola komple");
+//		
+//	}
+	
+	public Tree (File JSONFile)
 	{
-		try		// kano dokimi ean eiani JSONString kai an lavo to diko mou exception ektipono antistoixa
-		{
-			Error(jsonString);		
-		}
+		String JSONstring;
+	    StringBuilder strBuilder = new StringBuilder();
+	    try(Scanner sc = new Scanner(JSONFile)) 
+	    {
+	      while(sc.hasNextLine() ) {
+	        String str = sc.nextLine();
+	        strBuilder.append(str);
+	        strBuilder.append("\n");
+	      }
+	    } 
+	    catch(IOException ex) 
+	    {
+	      ex.printStackTrace();
+	    }
+	    JSONstring = strBuilder.toString();
+	    
+	    try
+	    {	    	
+	    	Error(JSONstring);
+	    }
+	    
 		catch(TreeExceptions ex)
 		{
 			System.out.println("Caught exception: " + ex.toString());	// mallon prepei na ektipono kai to exception
 			//System.out.println("\u001B[31mCaught exception: " + ex.toString() + "\u001B[0m");
 		}
-		
-		System.out.println("Ola komple");
 		
 	}
 	
