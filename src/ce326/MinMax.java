@@ -10,14 +10,14 @@ public class MinMax
 		Tree newTree = null;
 		//for(String arg : args)
 		//	System.out.println(arg);
-		String input = "";
+		String input = "-o";
 		
-		System.out.println("-i <filename>  :  insert tree from file");
 		
 		Scanner sc = new Scanner(System.in);
 		
-		while(true)
+		while(!input.substring(0,2).matches("-q"))
 		{			
+			System.out.println("-i <filename>  :  insert tree from file");
 			input = sc.nextLine();
 			System.out.println(input);
 		
@@ -41,9 +41,27 @@ public class MinMax
 					break;
 				}
 				
+				case "-s":
+				{
+					System.out.println(newTree.size());
+					break;
+				}
+				
+				case "-j":
+				{
+					System.out.println(newTree.ExportJSON(newTree.returnRoot()).toString());
+					break;
+				}
+				
+				case "-h":
+				{
+					System.out.println(newTree.ExportJSONValue(newTree.returnRoot()).toString());
+					break;
+				}
+				
 				default:
 				{
-					System.out.println("Invalid input");
+					//ystem.out.println("Invalid input");
 				}
 			}
 	}

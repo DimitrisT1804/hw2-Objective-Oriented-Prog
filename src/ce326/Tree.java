@@ -66,7 +66,7 @@ public class Tree
 		JSONObject jsontry;
 		JSONArray jsonarray;
 		
-		TreeLeaves root;
+		//TreeLeaves root;		// den prepei na einai topiko to root, alla pedio sto class
 		
 		try
 		{
@@ -202,7 +202,6 @@ public class Tree
 	{
 		root = MinMaxImplementation(root);
 		postorderTraversalValues(root);
-	
 	}
 	
 	public void postorderTraversalValues(TreeLeaves node) 
@@ -221,4 +220,158 @@ public class Tree
 		}
 		System.out.print(node.getValue() + " ");
 	}
+	
+	
+	/* It returns the size of the tree */
+	int size = 1;
+	public int sizeImplementation(TreeLeaves newNode)
+	{
+		//TreeNode newNode = (TreeNode) root;
+		if(newNode instanceof TreeNode)
+		{
+			TreeNode node = (TreeNode) newNode;
+			
+			size = size + node.ChildrenArray.length;
+			for(int i = 0; i < node.ChildrenArray.length; i++)
+			{
+				sizeImplementation(node.ChildrenArray[i]);
+			}			
+		}
+		
+		return size;
+	}
+	
+	public int size()
+	{
+		int finalSize;
+		finalSize = sizeImplementation(root);
+		
+		return finalSize;
+	}
+	
+	public TreeNode returnRoot()
+	{
+		return (TreeNode) root;
+	}
+	
+	/* Method that returns the JSON format of this tree */
+//	@Override
+//	public String toString()
+//	{
+//		
+//	}
+	
+	//StringBuilder json = new StringBuilder();
+	public JSONObject ExportJSON(TreeLeaves CurrentNode)
+	{
+		if(CurrentNode instanceof MaximizerNode)
+		{
+			MaximizerNode newMaximizer;
+			newMaximizer = (MaximizerNode) CurrentNode;
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "max");
+			
+			JSONArray jsonarray = new JSONArray();
+			
+			for(int i = 0; i < newMaximizer.ChildrenArray.length; i++)
+			{
+				jsonarray.put(ExportJSON(newMaximizer.ChildrenArray[i]));
+			}
+			jsonObject.put("children", jsonarray);
+			
+			return jsonObject;
+		}
+		
+		else if(CurrentNode instanceof MinimizerNode)
+		{
+			MinimizerNode newMaximizer;
+			newMaximizer = (MinimizerNode) CurrentNode;
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "min");
+			
+			JSONArray jsonarray = new JSONArray();
+			
+			for(int i = 0; i < newMaximizer.ChildrenArray.length; i++)
+			{
+				jsonarray.put(ExportJSON(newMaximizer.ChildrenArray[i]));
+			}
+			jsonObject.put("children", jsonarray);
+			
+			return jsonObject;
+		}
+		
+		else if(CurrentNode instanceof TreeLeaves)
+		{
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("value", CurrentNode.getValue());
+			
+			return jsonObject;
+		}
+		
+		return null;
+	}
+	
+	
+	/* This method exports json when all nodes has value */
+	public JSONObject ExportJSONValue(TreeLeaves CurrentNode)
+	{
+		
+		if(CurrentNode instanceof MaximizerNode)
+		{
+			MaximizerNode newMaximizer;
+			newMaximizer = (MaximizerNode) CurrentNode;
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "max");
+			//System.out.println(CurrentNode.getValue());
+			//jsonObject.put("value=", newMaximizer.getValue());
+			//jsonObject.put("value=", "kati");
+			
+			JSONArray jsonarray = new JSONArray();
+			
+			for(int i = 0; i < newMaximizer.ChildrenArray.length; i++)
+			{
+				jsonarray.put(ExportJSON(newMaximizer.ChildrenArray[i]));
+			}
+			jsonObject.put("children", jsonarray);
+			
+			return jsonObject;
+		}
+		
+		else if(CurrentNode instanceof MinimizerNode)
+		{
+			MinimizerNode newMinimizer;
+			newMinimizer = (MinimizerNode) CurrentNode;
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "min");
+			//System.out.println(CurrentNode.getValue());
+			//jsonObject.put("value=", newMinimizer.getValue());
+			
+			JSONArray jsonarray = new JSONArray();
+			
+			for(int i = 0; i < newMinimizer.ChildrenArray.length; i++)
+			{
+				jsonarray.put(ExportJSON(newMinimizer.ChildrenArray[i]));
+			}
+			jsonObject.put("children", jsonarray);
+			
+			return jsonObject;
+		}
+		
+		else if(CurrentNode instanceof TreeLeaves)
+		{
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("value", CurrentNode.getValue());
+			
+			return jsonObject;
+		}
+		
+		return null;
+	}
+	
+	/* Method that prints in a file the JSON format of the tree */
+	void toFile(File file)
+	{
+		
+	}
+	
 }
