@@ -323,14 +323,14 @@ public class Tree
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("type", "max");
 			//System.out.println(CurrentNode.getValue());
-			//jsonObject.put("value=", newMaximizer.getValue());
+			jsonObject.put("value=", newMaximizer.getValue());
 			//jsonObject.put("value=", "kati");
 			
 			JSONArray jsonarray = new JSONArray();
 			
 			for(int i = 0; i < newMaximizer.ChildrenArray.length; i++)
 			{
-				jsonarray.put(ExportJSON(newMaximizer.ChildrenArray[i]));
+				jsonarray.put(ExportJSONValue(newMaximizer.ChildrenArray[i]));
 			}
 			jsonObject.put("children", jsonarray);
 			
@@ -344,13 +344,13 @@ public class Tree
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("type", "min");
 			//System.out.println(CurrentNode.getValue());
-			//jsonObject.put("value=", newMinimizer.getValue());
+			jsonObject.put("value=", newMinimizer.getValue());
 			
 			JSONArray jsonarray = new JSONArray();
 			
 			for(int i = 0; i < newMinimizer.ChildrenArray.length; i++)
 			{
-				jsonarray.put(ExportJSON(newMinimizer.ChildrenArray[i]));
+				jsonarray.put(ExportJSONValue(newMinimizer.ChildrenArray[i]));
 			}
 			jsonObject.put("children", jsonarray);
 			

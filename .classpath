@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/dimitris/Desktop/ce326/hw2/hw2-objectibe-oriented/src/ce326/hw2/json-20230227.jar"/>
+	<classpathentry kind="lib" path="/home/dimitris/Desktop/ce326/hw2/json-20230227.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
