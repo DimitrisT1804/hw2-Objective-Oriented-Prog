@@ -10,6 +10,7 @@ public class Tree
 	private TreeLeaves root;		// The root of the tree
 	Tree newTree;
 	JSONObject jsontry;
+	boolean isMinMax = false;
 	
 	// Constructor that has input a String in JSON Format
 //	public Tree (String jsonString)
@@ -368,9 +369,47 @@ public class Tree
 		return null;
 	}
 	
-	/* Method that prints in a file the JSON format of the tree */
-	void toFile(File file)
+	@Override
+	public String toString()
 	{
+		if(isMinMax)
+		{
+			return (ExportJSONValue(root).toString(2));
+		}
+		else
+		{
+			return (ExportJSON(root).toString(2));
+		}
+	}
+	
+	/* Method that prints in a file the JSON format of the tree */
+	
+	public void toFile(File file) throws TreeExceptions, IOException
+	{
+		if(file.exists())
+		{
+			throw new TreeExceptions("java.io.IOException");
+		}
+		else
+		{
+			if(file.createNewFile())
+			{
+				System.out.println("New file Created!");
+				
+				try
+				{
+					PrintWriter WriteFile = new PrintWriter(file);	
+					WriteFile.print(toString());					
+					WriteFile.close();
+				}
+				catch (FileNotFoundException ex)
+				{
+					throw new TreeExceptions("FileNotFoundException");
+				}
+
+				
+			}
+		}
 		
 	}
 	
@@ -384,6 +423,7 @@ public class Tree
 				if(newNode.ChildrenArray[i].getValue() == root.getValue())
 				{
 					optPath.add(i);
+					/* it means that it is not a TreeNode type */
 					if(!(newNode.ChildrenArray[i] instanceof MaximizerNode) && (!(newNode.ChildrenArray[i] instanceof MinimizerNode)))
 					{
 						//System.out.println(optPath);
@@ -401,6 +441,129 @@ public class Tree
 		
 		return optPath;
 	}
+
+	int nodeCount = 0;
+	
+	public String buildGraphvizTree(TreeLeaves node) 
+	 {
+		
+		TreeNode newNode;
+		StringBuilder graph = new StringBuilder();
+		if (node != null)  
+		{
+           int nodeNumber = nodeCount++;
+           
+           
+           
+           
+           graph.append("\tnode").append(nodeNumber).append(" [label=\"");
+           
+           if (node instanceof MaximizerNode)
+           {
+        	   newNode = (TreeNode) node;
+        	   if(!isMinMax)
+        	   {
+        		   graph.append("max");	   
+        	   }
+        	   else
+        	   {
+        		   graph.append(newNode.getValue());	
+        	   }
+        	   graph.append("\"];\n");
+        	   for(int i = 0; i < newNode.getChildrenSize(); i++)
+        	   {
+                   graph.append("\tnode").append(nodeNumber).append(" -> ");
+                   graph.append("node").append(nodeCount).append(";\n");
+                   graph.append(buildGraphvizTree(newNode.ChildrenArray[i]));
+        	   }
+        	   
+           }
+           
+           
+           else if (node instanceof MinimizerNode)
+           {
+        	   newNode = (TreeNode) node;
+        	   if(!isMinMax)
+        	   {        		   
+        		   graph.append("min");
+        	   }
+        	   else
+        	   {
+        		   graph.append(newNode.getValue());
+        	   }
+        	   graph.append("\"];\n");
+        	   for(int i = 0; i < newNode.getChildrenSize(); i++)
+        	   {
+                   graph.append("\tnode").append(nodeNumber).append(" -> ");
+                   graph.append("node").append(nodeCount).append(";\n");
+                   graph.append(buildGraphvizTree(newNode.ChildrenArray[i]));
+        	   }
+        	   //graph.append("\"];\n");
+           }
+           
+           else
+           {
+        	   //newNode = (TreeNode) node;
+        	   //graph.append("max");
+        	   graph.append(node.getValue());
+        	   graph.append("\"];\n");
+        	   //return;
+//        	   for(int i = 0; i < newNode.getChildrenSize(); i++)
+//        	   {
+//                   graph.append("\tnode").append(nodeNumber).append(" -> ");
+//                   graph.append("node").append(nodeCount).append(";\n");
+//                   graph.append(buildGraphvizTree(newNode.ChildrenArray[i]));
+//        	   }
+           }
+
+       }
+       return graph.toString();
+   }
+	
+	
+	public String toDOTString()
+	{
+		String TreeString;
+		StringBuilder graphPrint = new StringBuilder();
+        graphPrint.append("digraph TreeGraph {\n");
+        //graphPrint.append(newTree.buildGraphvizTree(newTree.returnRoot()));
+        TreeString = buildGraphvizTree(root);
+        graphPrint.append(TreeString);
+        graphPrint.append("}\n");
+        //System.out.println(graphPrint.toString());
+		
+		return graphPrint.toString();
+	}
+	
+	
+	public void toDotFile(File file) throws TreeExceptions, IOException
+	{
+		if(file.exists())
+		{
+			throw new TreeExceptions("java.io.IOException");
+		}
+		else
+		{
+			if(file.createNewFile())
+			{
+				System.out.println("New file Created!");
+				
+				try
+				{
+					PrintWriter WriteFile = new PrintWriter(file);	
+					WriteFile.print(toDOTString());					
+					WriteFile.close();
+				}
+				catch (FileNotFoundException ex)
+				{
+					throw new TreeExceptions("FileNotFoundException");
+				}	
+			}
+		}
+		
+	}
+	
+	
 	
 	
 	

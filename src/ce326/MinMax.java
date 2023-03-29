@@ -5,7 +5,7 @@ import java.io.*;
 
 public class MinMax 
 {
-	public static void main (String []args)
+	public static void main (String []args) throws TreeExceptions, IOException
 	{
 		Tree newTree = null;
 		//for(String arg : args)
@@ -21,6 +21,9 @@ public class MinMax
 			input = sc.nextLine();
 			System.out.println(input);
 		
+			
+			
+			
 		
 			switch(input.substring(0, 2))
 			{
@@ -38,6 +41,7 @@ public class MinMax
 				case "-c":
 				{
 					newTree.MinMaxImplementationCall();
+					newTree.isMinMax = true;
 					break;
 				}
 				
@@ -49,7 +53,20 @@ public class MinMax
 				
 				case "-j":
 				{
-					System.out.println(newTree.ExportJSON(newTree.returnRoot()).toString());
+					//System.out.println(newTree.ExportJSON(newTree.returnRoot()).toString(2));
+					if(input.length() > 2)
+					{
+						File file;
+						String FilePath;						
+						FilePath = input.substring(3);
+						file = new File(FilePath);
+						newTree.toFile(file);
+					}
+					
+					else
+					{						
+						System.out.println(newTree.toString());
+					}
 					break;
 				}
 				
@@ -67,6 +84,36 @@ public class MinMax
 					break;
 				}
 				
+				case "-t":
+				{
+//        	        graphPrint.append("digraph TreeGraph {\n");
+//        	        graphPrint.append(newTree.buildGraphvizTree(newTree.returnRoot()));
+//        	        graphPrint.append("}\n");
+//        	        System.out.println(graphPrint.toString());
+					System.out.println(newTree.toDOTString());
+					
+					break;
+				}
+				
+				case "-d":
+				{
+					//System.out.println(newTree.ExportJSON(newTree.returnRoot()).toString(2));
+					if(input.length() > 2)
+					{
+						File file;
+						String FilePath;						
+						FilePath = input.substring(3);
+						file = new File(FilePath);
+						newTree.toDotFile(file);
+					}
+					
+					else
+					{						
+						System.out.println(newTree.toDOTString());
+					}
+					break;
+				}
+				
 				default:
 				{
 					//ystem.out.println("Invalid input");
@@ -74,13 +121,6 @@ public class MinMax
 			}
 	}
 				
-		
-		//File myFile = new File(input);
-		
-		//Tree newTree = new Tree(myFile);	// methodos gia ton proto kataskevasti
-		
-		//Tree newTree = new Tree(myFile);
-		
 		
 	}
 }
