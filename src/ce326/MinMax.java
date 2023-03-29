@@ -62,7 +62,8 @@ public class MinMax
 				case "-o":
 				{
 					//System.out.println(newTree.ExportJSONValue(newTree.returnRoot()).toString());
-					newTree.optimalPath(newTree.returnRoot());
+					System.out.println(newTree.optimalPath());
+					
 					break;
 				}
 				

@@ -375,9 +375,9 @@ public class Tree
 	}
 	
 	
-	ArrayList<Integer> optPath = new ArrayList<Integer>(size());
+	ArrayList<Integer> optPath = new ArrayList<Integer>(0);		// to ftiaxno me 0 gia na exei akrivos idio mikos me ta elements
 	
-	public void optimalPath(TreeNode newNode)
+	public void optimalPathCall(TreeNode newNode)
 	{	
 			for (int i = 0; i < newNode.getChildrenSize(); i++)
 			{
@@ -386,14 +386,21 @@ public class Tree
 					optPath.add(i);
 					if(!(newNode.ChildrenArray[i] instanceof MaximizerNode) && (!(newNode.ChildrenArray[i] instanceof MinimizerNode)))
 					{
-						System.out.println(optPath);
+						//System.out.println(optPath);
 						return;
 					}
-					optimalPath((TreeNode)newNode.ChildrenArray[i]);
+					optimalPathCall((TreeNode)newNode.ChildrenArray[i]);
 				}
 			}	
 	}
 	
+	
+	public ArrayList<Integer> optimalPath()
+	{
+		optimalPathCall((TreeNode) root);
+		
+		return optPath;
+	}
 	
 	
 	
