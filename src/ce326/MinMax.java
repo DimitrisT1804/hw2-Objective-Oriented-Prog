@@ -59,6 +59,13 @@ public class MinMax
 					break;
 				}
 				
+				case "-o":
+				{
+					//System.out.println(newTree.ExportJSONValue(newTree.returnRoot()).toString());
+					newTree.optimalPath(newTree.returnRoot());
+					break;
+				}
+				
 				default:
 				{
 					//ystem.out.println("Invalid input");

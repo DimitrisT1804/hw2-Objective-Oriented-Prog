@@ -323,7 +323,7 @@ public class Tree
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("type", "max");
 			//System.out.println(CurrentNode.getValue());
-			jsonObject.put("value=", newMaximizer.getValue());
+			jsonObject.put("value", newMaximizer.getValue());
 			//jsonObject.put("value=", "kati");
 			
 			JSONArray jsonarray = new JSONArray();
@@ -344,7 +344,7 @@ public class Tree
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("type", "min");
 			//System.out.println(CurrentNode.getValue());
-			jsonObject.put("value=", newMinimizer.getValue());
+			jsonObject.put("value", newMinimizer.getValue());
 			
 			JSONArray jsonarray = new JSONArray();
 			
@@ -373,5 +373,28 @@ public class Tree
 	{
 		
 	}
+	
+	
+	ArrayList<Integer> optPath = new ArrayList<Integer>(size());
+	
+	public void optimalPath(TreeNode newNode)
+	{	
+			for (int i = 0; i < newNode.getChildrenSize(); i++)
+			{
+				if(newNode.ChildrenArray[i].getValue() == root.getValue())
+				{
+					optPath.add(i);
+					if(!(newNode.ChildrenArray[i] instanceof MaximizerNode) && (!(newNode.ChildrenArray[i] instanceof MinimizerNode)))
+					{
+						System.out.println(optPath);
+						return;
+					}
+					optimalPath((TreeNode)newNode.ChildrenArray[i]);
+				}
+			}	
+	}
+	
+	
+	
 	
 }
