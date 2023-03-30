@@ -1,6 +1,9 @@
 package ce326;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
 
 import org.json.JSONArray;
@@ -17,7 +20,7 @@ public class TreeAdvanced extends Tree
 	
 	
 	/* Na katalavo kalitera ton kodika auton */	//sxolio na vgei !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-	public double MinMax(TreeLeaves newNode, double alpha, double beta)
+	public double MinMaxCall(TreeLeaves newNode, double alpha, double beta)
 	{
 		if( !(newNode instanceof MaximizerNode) && !(newNode instanceof MinimizerNode) )
 		{
@@ -33,7 +36,7 @@ public class TreeAdvanced extends Tree
 			for(int i = 0; i < newMaximizer.getChildrenSize(); i++)
 			{
 				double currentValue;
-				currentValue = MinMax(newMaximizer.ChildrenArray[i], alpha, beta);
+				currentValue = MinMaxCall(newMaximizer.ChildrenArray[i], alpha, beta);
 				bestValue = Math.max(bestValue,  currentValue);
 				alpha = Math.max(alpha, bestValue);
 				
@@ -65,7 +68,7 @@ public class TreeAdvanced extends Tree
 			for(int i = 0; i < newMinimizer.getChildrenSize(); i++)
 			{
 				double currentValue;
-				currentValue = MinMax(newMinimizer.ChildrenArray[i], alpha, beta);
+				currentValue = MinMaxCall(newMinimizer.ChildrenArray[i], alpha, beta);
 				bestValue = Math.min(bestValue,  currentValue);
 				beta = Math.min(beta, bestValue);
 				
@@ -87,6 +90,11 @@ public class TreeAdvanced extends Tree
 		
 		
 		return -512;
+	}
+	
+	public double MinMax()
+	{
+		return (MinMaxCall(super.returnRoot(), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY));
 	}
 	
 	
@@ -272,5 +280,173 @@ public class TreeAdvanced extends Tree
 		}
 	}
 	
+	
+	public void toFile(File file) throws TreeExceptions, IOException
+	{
+		if(file.exists())
+		{
+			throw new TreeExceptions("java.io.IOException");
+		}
+		else
+		{
+			if(file.createNewFile())
+			{
+				//System.out.println("New file Created!");
+				
+				try
+				{
+					PrintWriter WriteFile = new PrintWriter(file);	
+					WriteFile.print(toString());					
+					WriteFile.close();
+				}
+				catch (FileNotFoundException ex)
+				{
+					throw new TreeExceptions("FileNotFoundException");
+				}
+
+				
+			}
+		}
+		
+	}
+	
+	
+	
+	int nodeCount = 0;
+	
+	public String buildGraphvizTree(TreeLeaves node) 
+	 {
+		
+		TreeNode newNode;
+		StringBuilder graph = new StringBuilder();
+		if (node != null)  
+		{
+           int nodeNumber = nodeCount++;
+           
+//           if(node.isPruned)
+//        	   graph.append("[color = 'red'];");
+           
+           graph.append("\tnode").append(nodeNumber).append(" [label=\"");
+           
+           if (node instanceof MaximizerNode)
+           {
+        	   newNode = (TreeNode) node;
+        	   if(!isMinMax)
+        	   {
+        		   graph.append("max");	   
+        	   }
+        	   else
+        	   {
+        		   graph.append(newNode.getValue());	
+        	   }
+        	   
+        	  // graph.append("\"]\n");
+        	   
+               if(node.isPruned)
+            	   graph.append("\", color = \"red\"];\n");
+               else
+            	   graph.append("\"];\n");
+        	   for(int i = 0; i < newNode.getChildrenSize(); i++)
+        	   {
+                   graph.append("\tnode").append(nodeNumber).append(" -> ");
+                   graph.append("node").append(nodeCount).append(";\n");
+                   graph.append(buildGraphvizTree(newNode.ChildrenArray[i]));
+        	   }
+        	   
+           }
+           
+           
+           else if (node instanceof MinimizerNode)
+           {
+        	   newNode = (TreeNode) node;
+        	   if(!isMinMax)
+        	   {        		   
+        		   graph.append("min");
+        	   }
+        	   else
+        	   {
+        		   graph.append(newNode.getValue());
+        	   }
+        	   //graph.append("\"]");
+        	   
+               if(node.isPruned)
+            	   graph.append("\", color = \"red\"];\n");
+               else
+            	   graph.append("\"];\n");
+        	   
+        	   for(int i = 0; i < newNode.getChildrenSize(); i++)
+        	   {
+                   graph.append("\tnode").append(nodeNumber).append(" -> ");
+                   graph.append("node").append(nodeCount).append(";\n");
+                   graph.append(buildGraphvizTree(newNode.ChildrenArray[i]));
+        	   }
+        	   //graph.append("\"];\n");
+           }
+           
+           else
+           {
+        	   //newNode = (TreeNode) node;
+        	   //graph.append("max");
+        	   graph.append(node.getValue());
+               if(node.isPruned)
+            	   graph.append("\", color = \"red\"];\n");
+               else
+            	   graph.append("\"];\n");
+        	   //graph.append("\"];\n");
+        	   //return;
+//        	   for(int i = 0; i < newNode.getChildrenSize(); i++)
+//        	   {
+//                   graph.append("\tnode").append(nodeNumber).append(" -> ");
+//                   graph.append("node").append(nodeCount).append(";\n");
+//                   graph.append(buildGraphvizTree(newNode.ChildrenArray[i]));
+//        	   }
+           }
+
+       }
+       return graph.toString();
+   }
+	
+	
+	public String toDOTString()
+	{
+		String TreeString;
+		StringBuilder graphPrint = new StringBuilder();
+        graphPrint.append("digraph TreeGraph {\n");
+        //graphPrint.append(newTree.buildGraphvizTree(newTree.returnRoot()));
+        TreeString = buildGraphvizTree(super.returnRoot());
+        graphPrint.append(TreeString);
+        graphPrint.append("}\n");
+        //System.out.println(graphPrint.toString());
+		
+		return graphPrint.toString();
+	}
+	
+	
+	public void toDotFile(File file) throws TreeExceptions, IOException
+	{
+		if(file.exists())
+		{
+			throw new TreeExceptions("java.io.IOException");
+		}
+		else
+		{
+			if(file.createNewFile())
+			{
+				//System.out.println("New file Created!");
+				
+				try
+				{
+					PrintWriter WriteFile = new PrintWriter(file);	
+					WriteFile.print(toDOTString());					
+					WriteFile.close();
+				}
+				catch (FileNotFoundException ex)
+				{
+					throw new TreeExceptions("FileNotFoundException");
+				}	
+			}
+		}
+		
+	}
 	
 }

@@ -6,6 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/dimitris/Desktop/ce326/hw2/hw2-Objective-Oriented-Prog/json-20230227.jar"/>
+	<classpathentry kind="lib" path="C:/Users/jimar/Desktop/Uni/Objective Programming/hw2 git/hw2-Objective-Oriented-Prog/json-20230227.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

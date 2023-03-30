@@ -12,6 +12,8 @@ public class MinMax
 		//for(String arg : args)
 		//	System.out.println(arg);
 		String input = "-o";
+		boolean Tree_is_Advanced = false;
+		boolean TreeSimple = false;
 		
 		
 		Scanner sc = new Scanner(System.in);
@@ -42,6 +44,8 @@ public class MinMax
 						System.out.println(FilePath);
 						
 						newTree = new Tree(newFile);
+						AdvancedTree = new TreeAdvanced(newFile);
+						
 						break;
 					}
 					
@@ -49,7 +53,20 @@ public class MinMax
 					{
 						newTree.MinMaxImplementationCall();
 						newTree.isMinMax = true;
+						TreeSimple = true;
 						break;
+					}
+					
+					case "-p":
+					{
+						double prunedValue;
+						prunedValue = AdvancedTree.MinMax();
+						AdvancedTree.checkPrunedCall(AdvancedTree.prunedNode);
+						AdvancedTree.isMinMax = true;
+						AdvancedTree.isPruned = true;
+						Tree_is_Advanced = true;
+						break;
+						
 					}
 					
 					case "-s":
@@ -67,12 +84,19 @@ public class MinMax
 							String FilePath;						
 							FilePath = input.substring(3);
 							file = new File(FilePath);
-							newTree.toFile(file);
+							
+							if(TreeSimple)
+								newTree.toFile(file);
+							else if (Tree_is_Advanced)
+								AdvancedTree.toFile(file);	
 						}
 						
 						else
-						{						
-							System.out.println(newTree.toString());
+						{		
+							if(TreeSimple)
+								System.out.println(newTree.toString());
+							else if(Tree_is_Advanced)
+								System.out.println(AdvancedTree.toString());
 						}
 						break;
 					}
@@ -111,12 +135,19 @@ public class MinMax
 							String FilePath;						
 							FilePath = input.substring(3);
 							file = new File(FilePath);
-							newTree.toDotFile(file);
+							
+							if(TreeSimple)
+								newTree.toDotFile(file);
+							else if(Tree_is_Advanced)
+								AdvancedTree.toDotFile(file);
 						}
 						
 						else
-						{						
-							System.out.println(newTree.toDOTString());
+						{			
+							if(TreeSimple)
+								System.out.println(newTree.toDOTString());
+							else if(Tree_is_Advanced)
+								System.out.println(AdvancedTree.toDOTString());
 						}
 						break;
 					}
@@ -132,7 +163,7 @@ public class MinMax
 						double here;
 						
 						AdvancedTree = new TreeAdvanced(newFile);
-						here = AdvancedTree.MinMax(AdvancedTree.returnRoot(), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
+						here = AdvancedTree.MinMaxCall(AdvancedTree.returnRoot(), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
 						System.out.println("The value is: " + here);
 						AdvancedTree.isMinMax = true;
 						AdvancedTree.printarray();

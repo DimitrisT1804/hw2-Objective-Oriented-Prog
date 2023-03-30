@@ -11,6 +11,7 @@ public class Tree
 	Tree newTree;
 	JSONObject jsontry;
 	boolean isMinMax = false;
+	boolean isPruned = false;
 	
 	
 	// Constructor that has input a String in JSON Format
@@ -82,7 +83,7 @@ public class Tree
 		}
 		
 		root = CreateMinMaxTree(jsontry);
-		System.out.println(root);
+		//System.out.println(root);
 		postorderTraversal(root);
 		//root = MinMaxImplementation(root);
 		//postorderTraversalValues(root);
@@ -395,7 +396,7 @@ public class Tree
 		{
 			if(file.createNewFile())
 			{
-				System.out.println("New file Created!");
+				//System.out.println("New file Created!");
 				
 				try
 				{
@@ -453,9 +454,6 @@ public class Tree
 		if (node != null)  
 		{
            int nodeNumber = nodeCount++;
-           
-           
-           
            
            graph.append("\tnode").append(nodeNumber).append(" [label=\"");
            
@@ -547,7 +545,7 @@ public class Tree
 		{
 			if(file.createNewFile())
 			{
-				System.out.println("New file Created!");
+				//System.out.println("New file Created!");
 				
 				try
 				{
