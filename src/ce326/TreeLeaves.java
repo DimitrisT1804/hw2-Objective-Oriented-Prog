@@ -5,6 +5,7 @@ package ce326;
 public class TreeLeaves 
 {
 	private double NodeValue; 		// it is private
+	public boolean isPruned = false;
 	
 	public TreeLeaves()
 	{

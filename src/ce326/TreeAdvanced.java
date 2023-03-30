@@ -3,6 +3,9 @@ package ce326;
 import java.io.File;
 import java.util.*;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 public class TreeAdvanced extends Tree
 {
 	public TreeAdvanced(File JSONFile) 
@@ -87,9 +90,186 @@ public class TreeAdvanced extends Tree
 	}
 	
 	
+	public void checkPruned(TreeLeaves Node)
+	{
+		TreeNode newNode;
+		
+		if( !(Node instanceof MaximizerNode) && !(Node instanceof MinimizerNode) )
+		{
+			Node.isPruned = true;
+			return;
+		}
+		
+		newNode = (TreeNode) Node;
+		
+		for(int i = 0; i < newNode.getChildrenSize(); i++)
+		{
+			newNode.ChildrenArray[i].isPruned = true;
+			checkPruned(newNode.ChildrenArray[i]);
+		}
+	}
+	
+	public void checkPrunedCall(ArrayList<TreeLeaves> arrayPruned)
+	{
+		for(int j = 0; j < arrayPruned.size(); j++)
+		{
+			checkPruned(arrayPruned.get(j));
+		}
+	}
+	
+	
 	public void printarray()
 	{
 		System.out.println(prunedNode.toString());
+	}
+	
+	
+	public JSONObject ExportJSON(TreeLeaves CurrentNode)
+	{
+		if(CurrentNode instanceof MaximizerNode)
+		{
+			MaximizerNode newMaximizer;
+			newMaximizer = (MaximizerNode) CurrentNode;
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "max");
+			
+			if(CurrentNode.isPruned)
+			{
+				jsonObject.put("pruned", "true");
+			}
+			
+			JSONArray jsonarray = new JSONArray();
+			
+			for(int i = 0; i < newMaximizer.ChildrenArray.length; i++)
+			{
+				jsonarray.put(ExportJSON(newMaximizer.ChildrenArray[i]));
+			}
+			jsonObject.put("children", jsonarray);
+			
+			return jsonObject;
+		}
+		
+		else if(CurrentNode instanceof MinimizerNode)
+		{
+			MinimizerNode newMaximizer;
+			newMaximizer = (MinimizerNode) CurrentNode;
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "min");
+			
+			if(CurrentNode.isPruned)
+			{
+				jsonObject.put("pruned", "true");
+			}
+			
+			JSONArray jsonarray = new JSONArray();
+			
+			for(int i = 0; i < newMaximizer.ChildrenArray.length; i++)
+			{
+				jsonarray.put(ExportJSON(newMaximizer.ChildrenArray[i]));
+			}
+			jsonObject.put("children", jsonarray);
+			
+			return jsonObject;
+		}
+		
+		else if(CurrentNode instanceof TreeLeaves)
+		{
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("value", CurrentNode.getValue());
+			
+			if(CurrentNode.isPruned)
+			{
+				jsonObject.put("pruned", "true");
+			}
+			
+			return jsonObject;
+		}
+		
+		return null;
+	}
+	
+	
+	/* This method exports json when all nodes has value */
+	public JSONObject ExportJSONValue(TreeLeaves CurrentNode)
+	{
+		
+		if(CurrentNode instanceof MaximizerNode)
+		{
+			MaximizerNode newMaximizer;
+			newMaximizer = (MaximizerNode) CurrentNode;
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "max");
+			//System.out.println(CurrentNode.getValue());
+			jsonObject.put("value", newMaximizer.getValue());
+			if(CurrentNode.isPruned)
+			{
+				jsonObject.put("pruned", "true");
+			}
+			//jsonObject.put("value=", "kati");
+			
+			JSONArray jsonarray = new JSONArray();
+			
+			for(int i = 0; i < newMaximizer.ChildrenArray.length; i++)
+			{
+				jsonarray.put(ExportJSONValue(newMaximizer.ChildrenArray[i]));
+			}
+			jsonObject.put("children", jsonarray);
+			
+			return jsonObject;
+		}
+		
+		else if(CurrentNode instanceof MinimizerNode)
+		{
+			MinimizerNode newMinimizer;
+			newMinimizer = (MinimizerNode) CurrentNode;
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "min");
+			//System.out.println(CurrentNode.getValue());
+			jsonObject.put("value", newMinimizer.getValue());
+			
+			if(CurrentNode.isPruned)
+			{
+				jsonObject.put("pruned", "true");
+			}
+			
+			JSONArray jsonarray = new JSONArray();
+			
+			for(int i = 0; i < newMinimizer.ChildrenArray.length; i++)
+			{
+				jsonarray.put(ExportJSONValue(newMinimizer.ChildrenArray[i]));
+			}
+			jsonObject.put("children", jsonarray);
+			
+			return jsonObject;
+		}
+		
+		else if(CurrentNode instanceof TreeLeaves)
+		{
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("value", CurrentNode.getValue());
+			
+			if(CurrentNode.isPruned)
+			{
+				jsonObject.put("pruned", "true");
+			}
+			
+			return jsonObject;
+		}
+		
+		return null;
+	}
+	
+	@Override
+	public String toString()
+	{
+		if(isMinMax)
+		{
+			return (ExportJSONValue(super.returnRoot()).toString(2));
+		}
+		else
+		{
+			return (ExportJSON(super.returnRoot()).toString(2));
+		}
 	}
 	
 	

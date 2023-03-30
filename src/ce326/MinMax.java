@@ -136,6 +136,7 @@ public class MinMax
 						System.out.println("The value is: " + here);
 						AdvancedTree.isMinMax = true;
 						AdvancedTree.printarray();
+						AdvancedTree.checkPrunedCall(AdvancedTree.prunedNode);
 						
 						//AdvancedTree.toDOTString();
 						break;
@@ -143,7 +144,8 @@ public class MinMax
 					
 					case "-v":
 					{
-						System.out.println(AdvancedTree.toDOTString());
+						//System.out.println(AdvancedTree.toDOTString());
+						System.out.println(AdvancedTree.toString());
 						break;
 					}
 					
