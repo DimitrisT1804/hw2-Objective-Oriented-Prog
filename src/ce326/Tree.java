@@ -12,6 +12,7 @@ public class Tree
 	JSONObject jsontry;
 	boolean isMinMax = false;
 	
+	
 	// Constructor that has input a String in JSON Format
 //	public Tree (String jsonString)
 //	{

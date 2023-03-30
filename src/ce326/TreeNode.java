@@ -3,8 +3,8 @@ package ce326;
 public class TreeNode extends TreeLeaves
 {
 		TreeLeaves[] ChildrenArray;		// isos thelei allo tipo apo pinaka
-		double AlphaValue = java.lang.Double.MIN_VALUE;		// -infinite
-		double BetaValue= java.lang.Double.MAX_VALUE;		// +infinite
+		double AlphaValue = Double.NEGATIVE_INFINITY;		// -infinite
+		double BetaValue= Double.POSITIVE_INFINITY;		// +infinite
 		
 		// Default Constructor
 		public TreeNode()
