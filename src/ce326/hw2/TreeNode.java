@@ -1,4 +1,4 @@
-package ce326;
+package ce326.hw2;
 
 public class TreeNode extends TreeLeaves
 {

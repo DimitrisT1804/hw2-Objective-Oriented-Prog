@@ -1,4 +1,4 @@
-package ce326;
+package ce326.hw2;
 
 /* This is the class of the tree leaves */
 

@@ -1,4 +1,4 @@
-package ce326;
+package ce326.hw2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -183,11 +183,12 @@ public class TreeAdvanced extends Tree
 		else if(CurrentNode instanceof TreeLeaves)
 		{
 			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "leaf");
 			jsonObject.put("value", CurrentNode.getValue());
 			
 			if(CurrentNode.isPruned)
 			{
-				jsonObject.put("pruned", "true");
+				jsonObject.put("pruned", true);
 			}
 			
 			return jsonObject;
@@ -254,11 +255,12 @@ public class TreeAdvanced extends Tree
 		else if(CurrentNode instanceof TreeLeaves)
 		{
 			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "leaf");
 			jsonObject.put("value", CurrentNode.getValue());
 			
 			if(CurrentNode.isPruned)
 			{
-				jsonObject.put("pruned", "true");
+				jsonObject.put("pruned", true);
 			}
 			
 			return jsonObject;

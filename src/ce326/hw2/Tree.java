@@ -1,4 +1,4 @@
-package ce326;
+package ce326.hw2;
 
 import java.io.*;
 import java.util.*;
@@ -84,7 +84,7 @@ public class Tree
 		
 		root = CreateMinMaxTree(jsontry);
 		//System.out.println(root);
-		postorderTraversal(root);
+		//postorderTraversal(root);
 		//root = MinMaxImplementation(root);
 		//postorderTraversalValues(root);
 	}
@@ -174,7 +174,7 @@ public class Tree
 			}
 			//newNode = (MaximizerNode) root;
 			newNode.SetValue(newNode.getMax());
-			System.out.println("Value is: "+newNode.getValue());
+			//System.out.println("Value is: "+newNode.getValue());
 			return newNode;
 		}
 		
@@ -204,7 +204,7 @@ public class Tree
 	public void MinMaxImplementationCall()
 	{
 		root = MinMaxImplementation(root);
-		postorderTraversalValues(root);
+		//postorderTraversalValues(root);
 	}
 	
 	public void postorderTraversalValues(TreeLeaves node) 
@@ -306,6 +306,7 @@ public class Tree
 		else if(CurrentNode instanceof TreeLeaves)
 		{
 			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "leaf");
 			jsonObject.put("value", CurrentNode.getValue());
 			
 			return jsonObject;
@@ -363,6 +364,7 @@ public class Tree
 		else if(CurrentNode instanceof TreeLeaves)
 		{
 			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("type", "leaf");
 			jsonObject.put("value", CurrentNode.getValue());
 			
 			return jsonObject;
