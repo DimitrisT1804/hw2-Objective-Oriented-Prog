@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 public class TreeAdvanced extends Tree
 {
-	public TreeAdvanced(File JSONFile) 
+	public TreeAdvanced(File JSONFile) throws TreeExceptions 
 	{
 		super(JSONFile);
 	}
@@ -49,13 +49,18 @@ public class TreeAdvanced extends Tree
 						prunedNode.add(newMaximizer.ChildrenArray[j]);
 					}
 					
+					//prunedNode.add(newMaximizer);
 					
-					break;		// no need to check the other children
+					newMaximizer.AlphaValue = alpha;
+					newMaximizer.SetValue(bestValue);
+					return bestValue;
+					//break;		// no need to check the other children
 				}
 			}
 			
 			newMaximizer.AlphaValue = alpha;
-			newMaximizer.SetValue(alpha);
+			//newMaximizer.SetValue(newMaximizer.AlphaValue);
+			newMaximizer.SetValue(bestValue);
 			return bestValue;
 		}
 		
@@ -79,12 +84,19 @@ public class TreeAdvanced extends Tree
 					for(int j = i+1; j < newMinimizer.getChildrenSize(); j++)
 					{
 						prunedNode.add(newMinimizer.ChildrenArray[j]);
+						
 					}
-					break;		// no need to check the other children
+					//prunedNode.add(newMinimizer);
+					
+					newMinimizer.BetaValue = beta;
+					newMinimizer.SetValue(bestValue);
+					return bestValue;
+					//break;		// no need to check the other children
 				}
 			}
 			newMinimizer.BetaValue = beta;
-			newMinimizer.SetValue(newMinimizer.BetaValue);
+			//newMinimizer.SetValue(newMinimizer.BetaValue);
+			newMinimizer.SetValue(bestValue);
 			return bestValue;
 		}
 		
@@ -122,6 +134,36 @@ public class TreeAdvanced extends Tree
 		for(int j = 0; j < arrayPruned.size(); j++)
 		{
 			checkPruned(arrayPruned.get(j));
+		}
+		CheckIfAllChildrenArePruned(super.returnRoot());
+	}
+	
+	
+	public void CheckIfAllChildrenArePruned(TreeLeaves node)
+	{
+		
+		TreeNode newNode;
+		int counter = 0;
+		
+		if( !(node instanceof MaximizerNode) && !(node instanceof MinimizerNode) )
+			return;
+		
+		newNode = (TreeNode) node;
+		
+		for(int i = 0; i < newNode.ChildrenArray.length; i++)
+		{
+			if(newNode.ChildrenArray[i].isPruned)
+				counter = counter + 1;
+		}
+		if(counter == newNode.ChildrenArray.length)
+		{
+			newNode.isPruned = true;
+			prunedNode.add(newNode);
+		}
+		
+		for(int i = 0; i < newNode.ChildrenArray.length; i++)
+		{
+			CheckIfAllChildrenArePruned(newNode.ChildrenArray[i]);
 		}
 	}
 	
@@ -209,10 +251,13 @@ public class TreeAdvanced extends Tree
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("type", "max");
 			//System.out.println(CurrentNode.getValue());
-			jsonObject.put("value", newMaximizer.getValue());
 			if(CurrentNode.isPruned)
 			{
-				jsonObject.put("pruned", "true");
+				jsonObject.put("pruned", true);
+			}
+			else
+			{				
+				jsonObject.put("value", newMaximizer.getValue());
 			}
 			//jsonObject.put("value=", "kati");
 			
@@ -234,11 +279,15 @@ public class TreeAdvanced extends Tree
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("type", "min");
 			//System.out.println(CurrentNode.getValue());
-			jsonObject.put("value", newMinimizer.getValue());
+			//jsonObject.put("value", newMinimizer.getValue());
 			
 			if(CurrentNode.isPruned)
 			{
-				jsonObject.put("pruned", "true");
+				jsonObject.put("pruned", true);
+			}
+			else
+			{
+				jsonObject.put("value", newMinimizer.getValue());
 			}
 			
 			JSONArray jsonarray = new JSONArray();
@@ -451,4 +500,32 @@ public class TreeAdvanced extends Tree
 		
 	}
 	
+	double PrunedCounter = 0;
+	public void prunedNodeCaclulation(TreeLeaves node)
+	{
+		TreeNode newNode;
+		if( !(node instanceof MaximizerNode) && !(node instanceof MinimizerNode) )
+		{
+			if(node.isPruned)
+				PrunedCounter = PrunedCounter + 1;
+			return;
+		}
+		else
+		{
+			newNode = (TreeNode) node;
+			for(int i = 0; i < newNode.getChildrenSize(); i++)
+			{
+				if(newNode.isPruned)
+					PrunedCounter = PrunedCounter + 1;
+				prunedNodeCaclulation(newNode.ChildrenArray[i]);
+			}
+		}
+	}
+	
+	
+	double prunedNode()
+	{
+		prunedNodeCaclulation(super.returnRoot());
+		return PrunedCounter;
+	}
 }

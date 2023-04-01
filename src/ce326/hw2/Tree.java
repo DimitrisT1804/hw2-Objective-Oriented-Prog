@@ -31,7 +31,7 @@ public class Tree
 //		
 //	}
 	
-	public Tree (File JSONFile)
+	public Tree (File JSONFile) throws TreeExceptions
 	{
 		String JSONstring;
 	    StringBuilder strBuilder = new StringBuilder();
@@ -56,8 +56,9 @@ public class Tree
 	    
 		catch(TreeExceptions ex)
 		{
-			System.out.println("Caught exception: " + ex.toString());	// mallon prepei na ektipono kai to exception
+			//System.out.println("Caught exception: " + ex.toString());	// mallon prepei na ektipono kai to exception
 			//System.out.println("\u001B[31mCaught exception: " + ex.toString() + "\u001B[0m");
+			throw new TreeExceptions("java.util.IllegalArgumentException");
 		}
 		
 	}

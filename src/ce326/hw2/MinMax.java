@@ -12,25 +12,38 @@ public class MinMax
 		//for(String arg : args)
 		//	System.out.println(arg);
 		String input = "-o";
+		boolean initialized_tree = false;
 		boolean Tree_is_Advanced = false;
 		boolean TreeSimple = false;
+		ArrayList<Integer> optPath;
 		
 		
 		Scanner sc = new Scanner(System.in);
 		
 		//while(!input.substring(0,2).matches("-q"))
-		System.out.println("-i <filename>   : insert tree from file\r\n"
-				+ "-j [<filename>] : print tree in the specified filename using JSON format\r\n"
-				+ "-d [<filename>] : print tree in the specified filename using DOT format\r\n"
-				+ "-c              : calculate tree using min-max algorithm\r\n"
-				+ "-p              : calculate tree using min-max and alpha-beta pruning optimization\r\n"
-				+ "-q              : quit this program");
+//		System.out.println("\n-i <filename>   : insert tree from file\r\n"
+//				+ "-j [<filename>] : print tree in the specified filename using JSON format\r\n"
+//				+ "-d [<filename>] : print tree in the specified filename using DOT format\r\n"
+//				+ "-c              : calculate tree using min-max algorithm\r\n"
+//				+ "-p              : calculate tree using min-max and alpha-beta pruning optimization\r\n"
+//				+ "-q              : quit this program\r\n\n"
+//				+"$>");
 		while(true)
 		{			
 			//System.out.println("-i <filename>  :  insert tree from file");
+			System.out.println("\n");
+			System.out.println("-i <filename>   : insert tree from file\r\n"
+					+ "-j [<filename>] : print tree in the specified filename using JSON format\r\n"
+					+ "-d [<filename>] : print tree in the specified filename using DOT format\r\n"
+					+ "-c              : calculate tree using min-max algorithm\r\n"
+					+ "-p              : calculate tree using min-max and alpha-beta pruning optimization\r\n"
+					+ "-q              : quit this program\r\n\n"
+					+"$>");
 
 			
 			input = sc.nextLine();
+			//System.out.println(input);
+			
 			//System.out.println(input);
 		
 			if(input.length() >= 2)
@@ -46,18 +59,34 @@ public class MinMax
 						if(newFile.exists())
 						{
 							if(newFile.canRead())
-							{								
-								newTree = new Tree(newFile);
-								AdvancedTree = new TreeAdvanced(newFile);			
+							{	
+								
+//					            Scanner scanner = new Scanner(newFile);
+//
+//					            while (scanner.hasNextLine()) {
+//					                String line = scanner.nextLine();
+//					                System.out.println(line);
+//					            }
+								try
+								{
+									newTree = new Tree(newFile);
+									AdvancedTree = new TreeAdvanced(newFile);	
+									initialized_tree = true;
+									System.out.println("OK");
+								}
+								catch (TreeExceptions ex2) 
+								{
+									System.out.println("Invalid Format\n");
+								}
 							}
 							else
 							{
-								System.out.println("Unable to open file " + FilePath);
+								System.out.println("Unable to open " + "'" + FilePath + "'\n");
 							}
 						}
 						else
 						{
-							System.out.println("Unable to find file " + FilePath);
+							System.out.println("Unable to find " + "'" + FilePath + "'\n");
 						}
 						
 						
@@ -66,21 +95,66 @@ public class MinMax
 					
 					case "-c":
 					{
-						newTree.MinMaxImplementationCall();
-						System.out.println(newTree.optimalPath());
-						newTree.isMinMax = true;
-						TreeSimple = true;
+						if(initialized_tree)
+						{	
+							newTree.MinMaxImplementationCall();
+							//System.out.println(newTree.optimalPath());
+							optPath = newTree.optimalPath();
+//						Integer[] array = new Integer[optPath.size()];
+//						array = optPath.toArray();
+							//System.out.println("\n");
+							for(Integer number : optPath.subList(0, optPath.size() - 1))
+							{
+								System.out.print(number + ", ");
+							}
+							
+							Integer LastNumber = optPath.get(optPath.size()-1);
+							System.out.print(LastNumber);
+							System.out.print("\n\n");
+							
+							newTree.isMinMax = true;
+							TreeSimple = true;
+						}
+						else
+						{
+							System.out.println("Not OK\n");
+						}
 						break;
 					}
 					
 					case "-p":
 					{
-						double prunedValue;
-						prunedValue = AdvancedTree.MinMax();
-						AdvancedTree.checkPrunedCall(AdvancedTree.prunedNode);
-						AdvancedTree.isMinMax = true;
-						AdvancedTree.isPruned = true;
-						Tree_is_Advanced = true;
+						int prunedCounter;
+						if(initialized_tree)
+						{							
+							AdvancedTree.MinMax();
+							//AdvancedTree.CheckIfAllChildrenArePruned(AdvancedTree.super.returnRoot);
+							AdvancedTree.checkPrunedCall(AdvancedTree.prunedNode);
+							
+							prunedCounter = (int) Math.round(AdvancedTree.prunedNode()); 
+							
+							System.out.print("[" + AdvancedTree.size() + "," + prunedCounter + "] ");
+							
+							AdvancedTree.isMinMax = true;
+							AdvancedTree.isPruned = true;
+							Tree_is_Advanced = true;
+							
+							optPath = AdvancedTree.optimalPath();
+							//System.out.println("\n");
+							for(Integer number : optPath.subList(0, optPath.size() - 1))
+							{
+								System.out.print(number + ", ");
+							}
+							Integer LastNumber = optPath.get(optPath.size()-1);
+							System.out.print(LastNumber);
+							System.out.print("\n\n");
+						}
+						else
+						{
+							System.out.println("Not OK\n");
+						}
+						
+						
 						break;
 						
 					}
@@ -101,10 +175,26 @@ public class MinMax
 							FilePath = input.substring(3);
 							file = new File(FilePath);
 							
-							if(TreeSimple)
-								newTree.toFile(file);
-							else if (Tree_is_Advanced)
-								AdvancedTree.toFile(file);	
+							try
+							{
+								if(TreeSimple)
+									newTree.toFile(file);
+								else if (Tree_is_Advanced)
+									AdvancedTree.toFile(file);	
+								else
+								{
+									newTree.toFile(file);
+								}
+							}
+							catch(FileNotFoundException ex2)
+							{
+								System.out.println("Unable to write '" + FilePath + "'\n" );
+							}
+							catch(TreeExceptions ex3)
+							{
+								System.out.println("File '" + FilePath + "' already exists!\n" );
+							}
+							System.out.println("OK\n");
 						}
 						
 						else
@@ -113,6 +203,11 @@ public class MinMax
 								System.out.println(newTree.toString());
 							else if(Tree_is_Advanced)
 								System.out.println(AdvancedTree.toString());
+							else
+							{
+								System.out.println(newTree.toString());
+							}
+							
 						}
 						break;
 					}
@@ -158,11 +253,20 @@ public class MinMax
 									newTree.toDotFile(file);
 								else if(Tree_is_Advanced)
 									AdvancedTree.toDotFile(file);
+								else
+								{
+									newTree.toDotFile(file);
+								}
 							}
 							catch(FileNotFoundException ex2)
 							{
-								System.out.println("File already exists!");
+								System.out.println("Unable to write '" + FilePath + "'\n" );
 							}
+							catch(TreeExceptions ex3)
+							{
+								System.out.println("File '" + FilePath + "' already exists!\n" );
+							}
+							System.out.println("OK\n");
 						}
 						
 						else
@@ -171,6 +275,10 @@ public class MinMax
 								System.out.println(newTree.toDOTString());
 							else if(Tree_is_Advanced)
 								System.out.println(AdvancedTree.toDOTString());
+							else
+								System.out.println(newTree.toDOTString());
+							
+							
 						}
 						break;
 					}
@@ -209,12 +317,13 @@ public class MinMax
 					
 					default:
 					{
-						System.out.println("-i <filename>   : insert tree from file\r\n"
-								+ "-j [<filename>] : print tree in the specified filename using JSON format\r\n"
-								+ "-d [<filename>] : print tree in the specified filename using DOT format\r\n"
-								+ "-c              : calculate tree using min-max algorithm\r\n"
-								+ "-p              : calculate tree using min-max and alpha-beta pruning optimization\r\n"
-								+ "-q              : quit this program");
+//						System.out.println("\n-i <filename>   : insert tree from file\r\n"
+//								+ "-j [<filename>] : print tree in the specified filename using JSON format\r\n"
+//								+ "-d [<filename>] : print tree in the specified filename using DOT format\r\n"
+//								+ "-c              : calculate tree using min-max algorithm\r\n"
+//								+ "-p              : calculate tree using min-max and alpha-beta pruning optimization\r\n"
+//								+ "-q              : quit this program\r\n\n"
+//								+"$>");
 						//ystem.out.println("Invalid input");
 					}
 				}
