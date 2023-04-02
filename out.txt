@@ -1,0 +1,43 @@
+
+-i <filename>   : insert tree from file
+-j [<filename>] : print tree in the specified filename using JSON format
+-d [<filename>] : print tree in the specified filename using DOT format
+-c              : calculate tree using min-max algorithm
+-p              : calculate tree using min-max and alpha-beta pruning optimization
+-q              : quit this program
+
+$>
+OK
+
+-i <filename>   : insert tree from file
+-j [<filename>] : print tree in the specified filename using JSON format
+-d [<filename>] : print tree in the specified filename using DOT format
+-c              : calculate tree using min-max algorithm
+-p              : calculate tree using min-max and alpha-beta pruning optimization
+-q              : quit this program
+
+$>
+OK
+
+
+-i <filename>   : insert tree from file
+-j [<filename>] : print tree in the specified filename using JSON format
+-d [<filename>] : print tree in the specified filename using DOT format
+-c              : calculate tree using min-max algorithm
+-p              : calculate tree using min-max and alpha-beta pruning optimization
+-q              : quit this program
+
+$>
+File 'C:\Users\jimar\Desktop\Uni\Objective Programming\hw2 git\hw2-Objective-Oriented-Prog\json files\json1' already exists
+
+OK
+
+
+-i <filename>   : insert tree from file
+-j [<filename>] : print tree in the specified filename using JSON format
+-d [<filename>] : print tree in the specified filename using DOT format
+-c              : calculate tree using min-max algorithm
+-p              : calculate tree using min-max and alpha-beta pruning optimization
+-q              : quit this program
+
+$>

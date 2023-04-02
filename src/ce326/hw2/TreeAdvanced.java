@@ -506,8 +506,8 @@ public class TreeAdvanced extends Tree
 		TreeNode newNode;
 		if( !(node instanceof MaximizerNode) && !(node instanceof MinimizerNode) )
 		{
-			if(node.isPruned)
-				PrunedCounter = PrunedCounter + 1;
+//			if(node.isPruned)
+//				PrunedCounter = PrunedCounter + 1;
 			return;
 		}
 		else
@@ -515,9 +515,9 @@ public class TreeAdvanced extends Tree
 			newNode = (TreeNode) node;
 			for(int i = 0; i < newNode.getChildrenSize(); i++)
 			{
-				if(newNode.isPruned)
-					PrunedCounter = PrunedCounter + 1;
 				prunedNodeCaclulation(newNode.ChildrenArray[i]);
+				if(newNode.ChildrenArray[i].isPruned)
+					PrunedCounter = PrunedCounter + 1;
 			}
 		}
 	}

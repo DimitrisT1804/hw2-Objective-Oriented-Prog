@@ -19,6 +19,10 @@ public class MinMax
 		
 		
 		Scanner sc = new Scanner(System.in);
+//		String path = ( "C:\\Users\\jimar\\Desktop\\Uni\\Objective Programming\\hw2 git\\hw2-Objective-Oriented-Prog\\out.txt");
+//		File myFile = new File (path);
+//        PrintStream out = new PrintStream(myFile);
+//        System.setOut(out);
 		
 		//while(!input.substring(0,2).matches("-q"))
 //		System.out.println("\n-i <filename>   : insert tree from file\r\n"
@@ -31,8 +35,8 @@ public class MinMax
 		while(true)
 		{			
 			//System.out.println("-i <filename>  :  insert tree from file");
-			System.out.println("\n");
-			System.out.println("-i <filename>   : insert tree from file\r\n"
+			//System.out.println("\n");
+			System.out.println("\n-i <filename>   : insert tree from file\r\n"
 					+ "-j [<filename>] : print tree in the specified filename using JSON format\r\n"
 					+ "-d [<filename>] : print tree in the specified filename using DOT format\r\n"
 					+ "-c              : calculate tree using min-max algorithm\r\n"
@@ -97,23 +101,26 @@ public class MinMax
 					{
 						if(initialized_tree)
 						{	
-							newTree.MinMaxImplementationCall();
-							//System.out.println(newTree.optimalPath());
-							optPath = newTree.optimalPath();
+							if(!newTree.onlyRoot)
+							{								
+								newTree.MinMaxImplementationCall();
+								//System.out.println(newTree.optimalPath());
+								optPath = newTree.optimalPath();
 //						Integer[] array = new Integer[optPath.size()];
 //						array = optPath.toArray();
-							//System.out.println("\n");
-							for(Integer number : optPath.subList(0, optPath.size() - 1))
-							{
-								System.out.print(number + ", ");
+								//System.out.println("\n");
+								for(Integer number : optPath.subList(0, optPath.size() - 1))
+								{
+									System.out.print(number + ", ");
+								}
+								
+								Integer LastNumber = optPath.get(optPath.size()-1);
+								System.out.print(LastNumber);
+								System.out.print("\n\n");
+								
+								newTree.isMinMax = true;
+								TreeSimple = true;
 							}
-							
-							Integer LastNumber = optPath.get(optPath.size()-1);
-							System.out.print(LastNumber);
-							System.out.print("\n\n");
-							
-							newTree.isMinMax = true;
-							TreeSimple = true;
 						}
 						else
 						{
@@ -127,27 +134,34 @@ public class MinMax
 						int prunedCounter;
 						if(initialized_tree)
 						{							
-							AdvancedTree.MinMax();
-							//AdvancedTree.CheckIfAllChildrenArePruned(AdvancedTree.super.returnRoot);
-							AdvancedTree.checkPrunedCall(AdvancedTree.prunedNode);
-							
-							prunedCounter = (int) Math.round(AdvancedTree.prunedNode()); 
-							
-							System.out.print("[" + AdvancedTree.size() + "," + prunedCounter + "] ");
-							
-							AdvancedTree.isMinMax = true;
-							AdvancedTree.isPruned = true;
-							Tree_is_Advanced = true;
-							
-							optPath = AdvancedTree.optimalPath();
-							//System.out.println("\n");
-							for(Integer number : optPath.subList(0, optPath.size() - 1))
-							{
-								System.out.print(number + ", ");
+							if(!AdvancedTree.onlyRoot)
+							{		
+								AdvancedTree.MinMax();
+								//AdvancedTree.CheckIfAllChildrenArePruned(AdvancedTree.super.returnRoot);
+								AdvancedTree.checkPrunedCall(AdvancedTree.prunedNode);
+								
+								prunedCounter = (int) Math.round(AdvancedTree.prunedNode()); 
+								
+								System.out.print("[" + AdvancedTree.size() + "," + prunedCounter + "] ");
+								
+								AdvancedTree.isMinMax = true;
+								AdvancedTree.isPruned = true;
+								Tree_is_Advanced = true;
+								
+								optPath = AdvancedTree.optimalPath();
+								//System.out.println("\n");
+								for(Integer number : optPath.subList(0, optPath.size() - 1))
+								{
+									System.out.print(number + ", ");
+								}
+								Integer LastNumber = optPath.get(optPath.size()-1);
+								System.out.print(LastNumber);
+								System.out.print("\n\n");
 							}
-							Integer LastNumber = optPath.get(optPath.size()-1);
-							System.out.print(LastNumber);
-							System.out.print("\n\n");
+							else
+							{
+								System.out.print("[1,0] \n\n");
+							}
 						}
 						else
 						{
@@ -185,6 +199,7 @@ public class MinMax
 								{
 									newTree.toFile(file);
 								}
+								System.out.println("OK\n");
 							}
 							catch(FileNotFoundException ex2)
 							{
@@ -192,9 +207,13 @@ public class MinMax
 							}
 							catch(TreeExceptions ex3)
 							{
-								System.out.println("File '" + FilePath + "' already exists!\n" );
+								System.out.println("File '" + FilePath + "' already exists\n" );
 							}
-							System.out.println("OK\n");
+							catch(IOException ex4)
+							{
+								System.out.println("Unable to write '" + FilePath + "'\n" );
+							}
+							
 						}
 						
 						else
@@ -257,6 +276,7 @@ public class MinMax
 								{
 									newTree.toDotFile(file);
 								}
+								System.out.println("OK\n");
 							}
 							catch(FileNotFoundException ex2)
 							{
@@ -264,9 +284,9 @@ public class MinMax
 							}
 							catch(TreeExceptions ex3)
 							{
-								System.out.println("File '" + FilePath + "' already exists!\n" );
+								System.out.println("File '" + FilePath + "' already exists\n" );
 							}
-							System.out.println("OK\n");
+							
 						}
 						
 						else

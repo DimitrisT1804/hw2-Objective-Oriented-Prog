@@ -12,24 +12,25 @@ public class Tree
 	JSONObject jsontry;
 	boolean isMinMax = false;
 	boolean isPruned = false;
+	boolean onlyRoot = false;
 	
 	
 	// Constructor that has input a String in JSON Format
-//	public Tree (String jsonString)
-//	{
-//		try		// kano dokimi ean eiani JSONString kai an lavo to diko mou exception ektipono antistoixa
-//		{
-//			Error(jsonString);		
-//		}
-//		catch(TreeExceptions ex)
-//		{
-//			System.out.println("Caught exception: " + ex.toString());	// mallon prepei na ektipono kai to exception
-//			//System.out.println("\u001B[31mCaught exception: " + ex.toString() + "\u001B[0m");
-//		}
-//		
-//		System.out.println("Ola komple");
-//		
-//	}
+	public Tree (String jsonString)
+	{
+		try		// kano dokimi ean eiani JSONString kai an lavo to diko mou exception ektipono antistoixa
+		{
+			Error(jsonString);		
+		}
+		catch(TreeExceptions ex)
+		{
+			System.out.println("Caught exception: " + ex.toString());	// mallon prepei na ektipono kai to exception
+			//System.out.println("\u001B[31mCaught exception: " + ex.toString() + "\u001B[0m");
+		}
+		
+		System.out.println("Ola komple");
+		
+	}
 	
 	public Tree (File JSONFile) throws TreeExceptions
 	{
@@ -84,6 +85,18 @@ public class Tree
 		}
 		
 		root = CreateMinMaxTree(jsontry);
+		
+		try
+		{
+			TreeNode testNode;
+			testNode = (TreeNode) root;
+		}
+		catch(ClassCastException ex6)
+		{
+			onlyRoot = true;
+		}
+		
+		
 		//System.out.println(root);
 		//postorderTraversal(root);
 		//root = MinMaxImplementation(root);
@@ -157,7 +170,7 @@ public class Tree
 	        }
 	        System.out.print("Min ");
 	    } else if (node instanceof TreeLeaves) {
-	        TreeLeaves leavesNode = (TreeLeaves) node;
+	        TreeLeaves leavesNode = node;
 	        System.out.print(leavesNode.getValue() + " ");
 	    }
 	}
@@ -255,8 +268,12 @@ public class Tree
 	
 	public TreeNode returnRoot()
 	{
+		
 		return (TreeNode) root;
+
+
 	}
+	
 	
 	/* Method that returns the JSON format of this tree */
 //	@Override
@@ -397,6 +414,7 @@ public class Tree
 		}
 		else
 		{
+	
 			if(file.createNewFile())
 			{
 				//System.out.println("New file Created!");
@@ -411,12 +429,11 @@ public class Tree
 				{
 					throw new TreeExceptions("FileNotFoundException");
 				}
-
-				
+			}
+			
 			}
 		}
 		
-	}
 	
 	
 	ArrayList<Integer> optPath = new ArrayList<Integer>(0);		// to ftiaxno me 0 gia na exei akrivos idio mikos me ta elements
