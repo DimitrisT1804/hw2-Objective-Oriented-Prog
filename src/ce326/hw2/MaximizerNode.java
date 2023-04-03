@@ -2,9 +2,10 @@ package ce326.hw2;
 
 public class MaximizerNode extends TreeNode
 {
+	// Constructor
 	public MaximizerNode()
 	{
-		// isos thelei na kano construct me size
+		
 	}
 	
 	double getMax()

@@ -7,17 +7,19 @@ public class TreeLeaves
 	private double NodeValue; 		// it is private
 	public boolean isPruned = false;
 	
+	// Constructor
 	public TreeLeaves()
 	{
 		
 	}
 	
+	// Constructor that initializes the NodeValue
 	public TreeLeaves(double NodeValue)
 	{
-		//TreeLeaves newNode = TreeLeaves();
 		this.NodeValue = NodeValue;
 	}
 	
+	/*Because NodeValue must be private, i use this method to get the value of each node */
 	public double getValue()
 	{
 		return NodeValue;

@@ -2,9 +2,10 @@ package ce326.hw2;
 
 public class MinimizerNode extends TreeNode
 {
+	// Constructor
 	public MinimizerNode()
 	{
-		// isos thelei na kano construct me size
+	
 	}
 	
 	double getMin()

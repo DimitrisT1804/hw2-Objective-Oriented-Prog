@@ -2,9 +2,9 @@ package ce326.hw2;
 
 public class TreeNode extends TreeLeaves
 {
-		TreeLeaves[] ChildrenArray;		// isos thelei allo tipo apo pinaka
-		double AlphaValue = Double.NEGATIVE_INFINITY;		// -infinite
-		double BetaValue= Double.POSITIVE_INFINITY;		// +infinite
+		TreeLeaves[] ChildrenArray;		// TreeLeaves Array that stores Children of each node
+		double alpha = Double.NEGATIVE_INFINITY;		// -infinite
+		double beta = Double.POSITIVE_INFINITY;		// +infinite
 		
 		// Default Constructor
 		public TreeNode()
@@ -14,9 +14,6 @@ public class TreeNode extends TreeLeaves
 		// Constructor with arguments
 		public TreeNode(TreeLeaves[] ChildrenArray)
 		{
-			//super(ChildrenArray[0]);
-			//this.ChildrenArray = new TreeLeaves[ChildrenArray.length];
-			//System.arraycopy(ChildrenArray, 0, this.ChildrenArray, 0, ChildrenArray.length);
 			this.ChildrenArray = ChildrenArray;
 		}
 		
@@ -33,7 +30,7 @@ public class TreeNode extends TreeLeaves
 		}
 		
 		// add node X in the position pos of the array
-		void insertChildren(int pos, TreeLeaves children)
+		void insertChild(int pos, TreeLeaves children)
 		{
 			ChildrenArray[pos] = children;
 		}

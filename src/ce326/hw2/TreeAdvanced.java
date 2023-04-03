@@ -9,20 +9,20 @@ import java.util.*;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class TreeAdvanced extends Tree
+public class TreeAdvanced extends Tree		// Advanced Tree that implements the MinMax with pruning algorithm and extends basic Tree
 {
+	/* Construct TreeAdvanced using super constructor with input JSONFile */
 	public TreeAdvanced(File JSONFile) throws TreeExceptions 
 	{
 		super(JSONFile);
 	}
 	
-	ArrayList<TreeLeaves> prunedNode = new ArrayList<TreeLeaves>();		// na diatrexo ton pinaka apo ekei kai kato
-	
-	
-	/* Na katalavo kalitera ton kodika auton */	//sxolio na vgei !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	// ArrayList that stores the pruned nodes
+	ArrayList<TreeLeaves> prunedNode = new ArrayList<TreeLeaves>();
+	/* Method that solve Tree with MinMax with pruning algorithm. It has input also alpha and beta to take easier the correct value from parent */
 	public double MinMaxCall(TreeLeaves newNode, double alpha, double beta)
 	{
-		if( !(newNode instanceof MaximizerNode) && !(newNode instanceof MinimizerNode) )
+		if( !(newNode instanceof MaximizerNode) && !(newNode instanceof MinimizerNode) )  	// if it is node just return value
 		{
 			return newNode.getValue();
 		}
@@ -30,54 +30,47 @@ public class TreeAdvanced extends Tree
 		if(newNode instanceof MaximizerNode)
 		{
 			TreeNode newMaximizer;
-			newMaximizer = (TreeNode) newNode;
-			double bestValue = Double.NEGATIVE_INFINITY;
+			newMaximizer = (TreeNode) newNode;	// Typecast only if it is of type MaximizerNode, otherwise it throws classException
+			double MaximumValue = Double.NEGATIVE_INFINITY;		// Initializing with maximum negative value
 			
 			for(int i = 0; i < newMaximizer.getChildrenSize(); i++)
 			{
 				double currentValue;
 				currentValue = MinMaxCall(newMaximizer.ChildrenArray[i], alpha, beta);
-				bestValue = Math.max(bestValue,  currentValue);
-				alpha = Math.max(alpha, bestValue);
+				MaximumValue = Math.max(MaximumValue,  currentValue);		// We choose maximum value of the returning and current maximum
+				alpha = Math.max(alpha, MaximumValue);		// We add new value to alpha which is the maximum of maximum value and last alpha value
 				
-				//newMaximizer.SetValue(newMaximizer.AlphaValue);
-				
-				if(beta <= alpha)
+				if(beta <= alpha)		// If beta is smaller than alpha the node should be pruned 
 				{
+					/* We add all pruned Nodes in an arrayList to know which of them are pruned */
 					for(int j = i+1; j < newMaximizer.getChildrenSize(); j++)
 					{
 						prunedNode.add(newMaximizer.ChildrenArray[j]);
 					}
 					
-					//prunedNode.add(newMaximizer);
-					
-					newMaximizer.AlphaValue = alpha;
-					newMaximizer.SetValue(bestValue);
-					return bestValue;
-					//break;		// no need to check the other children
+					newMaximizer.alpha = alpha;
+					newMaximizer.SetValue(MaximumValue);
+					return MaximumValue;
 				}
 			}
 			
-			newMaximizer.AlphaValue = alpha;
-			//newMaximizer.SetValue(newMaximizer.AlphaValue);
-			newMaximizer.SetValue(bestValue);
-			return bestValue;
+			newMaximizer.alpha = alpha;		// We add new value in the current node with the new alpha value
+			newMaximizer.SetValue(MaximumValue);	// Set value of current node with MaximumValue and then return maximum value
+			return MaximumValue;
 		}
 		
 		else if(newNode instanceof MinimizerNode)
 		{
 			TreeNode newMinimizer;
 			newMinimizer = (TreeNode) newNode;
-			double bestValue = Double.POSITIVE_INFINITY;
+			double MaximumValue = Double.POSITIVE_INFINITY;
 			
 			for(int i = 0; i < newMinimizer.getChildrenSize(); i++)
 			{
 				double currentValue;
 				currentValue = MinMaxCall(newMinimizer.ChildrenArray[i], alpha, beta);
-				bestValue = Math.min(bestValue,  currentValue);
-				beta = Math.min(beta, bestValue);
-				
-				//newMinimizer.SetValue(newMinimizer.BetaValue);
+				MaximumValue = Math.min(MaximumValue,  currentValue);		// same thing but with minimum value 
+				beta = Math.min(beta, MaximumValue);		// same thing but for beta value and minimum value
 				
 				if(beta <= alpha)
 				{
@@ -86,35 +79,36 @@ public class TreeAdvanced extends Tree
 						prunedNode.add(newMinimizer.ChildrenArray[j]);
 						
 					}
-					//prunedNode.add(newMinimizer);
 					
-					newMinimizer.BetaValue = beta;
-					newMinimizer.SetValue(bestValue);
-					return bestValue;
-					//break;		// no need to check the other children
+					newMinimizer.beta = beta;
+					newMinimizer.SetValue(MaximumValue);
+					return MaximumValue;
 				}
 			}
-			newMinimizer.BetaValue = beta;
-			//newMinimizer.SetValue(newMinimizer.BetaValue);
-			newMinimizer.SetValue(bestValue);
-			return bestValue;
+			newMinimizer.beta = beta;
+			newMinimizer.SetValue(MaximumValue);
+			return MaximumValue;
 		}
 		
 		
-		return -512;
+		return -512;		// Random value just for the Warning, it will never send it
 	}
 	
+	
+	/* Calling the MinMax with alpha-beta pruning algorithm for the current Tree */
 	public double MinMax()
 	{
+		/* Need to use super to use the method returnRoot because it extends the Tree class */
 		return (MinMaxCall(super.returnRoot(), Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY));
 	}
 	
 	
+	/* Method that check the variable pruned true for the input node and all childrend of it if exists */
 	public void checkPruned(TreeLeaves Node)
 	{
 		TreeNode newNode;
 		
-		if( !(Node instanceof MaximizerNode) && !(Node instanceof MinimizerNode) )
+		if( !(Node instanceof MaximizerNode) && !(Node instanceof MinimizerNode) )	// If it is leaf
 		{
 			Node.isPruned = true;
 			return;
@@ -129,6 +123,7 @@ public class TreeAdvanced extends Tree
 		}
 	}
 	
+	/* Calling the method to check PrunedNodes for each node of the array */
 	public void checkPrunedCall(ArrayList<TreeLeaves> arrayPruned)
 	{
 		for(int j = 0; j < arrayPruned.size(); j++)
@@ -138,7 +133,7 @@ public class TreeAdvanced extends Tree
 		CheckIfAllChildrenArePruned(super.returnRoot());
 	}
 	
-	
+	/* If all Children of a node are pruned the node should also be pruned */
 	public void CheckIfAllChildrenArePruned(TreeLeaves node)
 	{
 		
@@ -168,12 +163,13 @@ public class TreeAdvanced extends Tree
 	}
 	
 	
-	public void printarray()
-	{
-		System.out.println(prunedNode.toString());
-	}
+//	public void printarray()
+//	{
+//		System.out.println(prunedNode.toString());
+//	}
+//	
 	
-	
+	/* A method that generates the JSON format from current Tree */
 	public JSONObject ExportJSON(TreeLeaves CurrentNode)
 	{
 		if(CurrentNode instanceof MaximizerNode)
@@ -185,7 +181,7 @@ public class TreeAdvanced extends Tree
 			
 			if(CurrentNode.isPruned)
 			{
-				jsonObject.put("pruned", "true");
+				jsonObject.put("pruned", "true");	// We also add the pruned variable if the node is pruned
 			}
 			
 			JSONArray jsonarray = new JSONArray();
@@ -250,7 +246,6 @@ public class TreeAdvanced extends Tree
 			newMaximizer = (MaximizerNode) CurrentNode;
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("type", "max");
-			//System.out.println(CurrentNode.getValue());
 			if(CurrentNode.isPruned)
 			{
 				jsonObject.put("pruned", true);
@@ -259,7 +254,6 @@ public class TreeAdvanced extends Tree
 			{				
 				jsonObject.put("value", newMaximizer.getValue());
 			}
-			//jsonObject.put("value=", "kati");
 			
 			JSONArray jsonarray = new JSONArray();
 			
@@ -278,8 +272,6 @@ public class TreeAdvanced extends Tree
 			newMinimizer = (MinimizerNode) CurrentNode;
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("type", "min");
-			//System.out.println(CurrentNode.getValue());
-			//jsonObject.put("value", newMinimizer.getValue());
 			
 			if(CurrentNode.isPruned)
 			{
@@ -321,9 +313,9 @@ public class TreeAdvanced extends Tree
 	@Override
 	public String toString()
 	{
-		if(isMinMax)
+		if(isMinMax)	// Checks if the algorithm run in this Tree to know if we should run the JSON with values
 		{
-			return (ExportJSONValue(super.returnRoot()).toString(2));
+			return (ExportJSONValue(super.returnRoot()).toString(2));	// 2 as input in toString to add spaces for better view
 		}
 		else
 		{
@@ -331,7 +323,7 @@ public class TreeAdvanced extends Tree
 		}
 	}
 	
-	
+	/* Method that prints in a file the JSON format of the tree */
 	public void toFile(File file) throws TreeExceptions, IOException
 	{
 		if(file.exists())
@@ -341,9 +333,7 @@ public class TreeAdvanced extends Tree
 		else
 		{
 			if(file.createNewFile())
-			{
-				//System.out.println("New file Created!");
-				
+			{	
 				try
 				{
 					PrintWriter WriteFile = new PrintWriter(file);	
@@ -354,17 +344,14 @@ public class TreeAdvanced extends Tree
 				{
 					throw new TreeExceptions("FileNotFoundException");
 				}
-
-				
 			}
 		}
 		
 	}
 	
 	
-	
 	int nodeCount = 0;
-	
+	/*Method that Created the DOT Format in a StringBuilder so that we can use the graphiz suite to represent the Tree */
 	public String buildGraphvizTree(TreeLeaves node) 
 	 {
 		
@@ -373,10 +360,7 @@ public class TreeAdvanced extends Tree
 		if (node != null)  
 		{
            int nodeNumber = nodeCount++;
-           
-//           if(node.isPruned)
-//        	   graph.append("[color = 'red'];");
-           
+
            graph.append("\tnode").append(nodeNumber).append(" [label=\"");
            
            if (node instanceof MaximizerNode)
@@ -391,10 +375,8 @@ public class TreeAdvanced extends Tree
         		   graph.append(newNode.getValue());	
         	   }
         	   
-        	  // graph.append("\"]\n");
-        	   
-               if(node.isPruned)
-            	   graph.append("\", color = \"red\"];\n");
+               if(node.isPruned)	// If it is pruned we should make the node red 
+            	   graph.append("\", color = \"red\"];\n");	
                else
             	   graph.append("\"];\n");
         	   for(int i = 0; i < newNode.getChildrenSize(); i++)
@@ -418,7 +400,6 @@ public class TreeAdvanced extends Tree
         	   {
         		   graph.append(newNode.getValue());
         	   }
-        	   //graph.append("\"]");
         	   
                if(node.isPruned)
             	   graph.append("\", color = \"red\"];\n");
@@ -431,48 +412,35 @@ public class TreeAdvanced extends Tree
                    graph.append("node").append(nodeCount).append(";\n");
                    graph.append(buildGraphvizTree(newNode.ChildrenArray[i]));
         	   }
-        	   //graph.append("\"];\n");
            }
            
            else
            {
-        	   //newNode = (TreeNode) node;
-        	   //graph.append("max");
         	   graph.append(node.getValue());
                if(node.isPruned)
             	   graph.append("\", color = \"red\"];\n");
                else
             	   graph.append("\"];\n");
-        	   //graph.append("\"];\n");
-        	   //return;
-//        	   for(int i = 0; i < newNode.getChildrenSize(); i++)
-//        	   {
-//                   graph.append("\tnode").append(nodeNumber).append(" -> ");
-//                   graph.append("node").append(nodeCount).append(";\n");
-//                   graph.append(buildGraphvizTree(newNode.ChildrenArray[i]));
-//        	   }
            }
 
        }
        return graph.toString();
    }
 	
-	
+	/* Method that print DOT in STDOUT */
 	public String toDOTString()
 	{
 		String TreeString;
 		StringBuilder graphPrint = new StringBuilder();
         graphPrint.append("digraph TreeGraph {\n");
-        //graphPrint.append(newTree.buildGraphvizTree(newTree.returnRoot()));
         TreeString = buildGraphvizTree(super.returnRoot());
         graphPrint.append(TreeString);
         graphPrint.append("}\n");
-        //System.out.println(graphPrint.toString());
 		
 		return graphPrint.toString();
 	}
 	
-	
+	/* Method that print DOT in the specified File */
 	public void toDotFile(File file) throws TreeExceptions, IOException
 	{
 		if(file.exists())
@@ -482,9 +450,7 @@ public class TreeAdvanced extends Tree
 		else
 		{
 			if(file.createNewFile())
-			{
-				//System.out.println("New file Created!");
-				
+			{			
 				try
 				{
 					PrintWriter WriteFile = new PrintWriter(file);	
@@ -501,13 +467,12 @@ public class TreeAdvanced extends Tree
 	}
 	
 	double PrunedCounter = 0;
+	/* Method that penetrates each node to count the prunedNodes */
 	public void prunedNodeCaclulation(TreeLeaves node)
 	{
 		TreeNode newNode;
 		if( !(node instanceof MaximizerNode) && !(node instanceof MinimizerNode) )
 		{
-//			if(node.isPruned)
-//				PrunedCounter = PrunedCounter + 1;
 			return;
 		}
 		else
@@ -523,7 +488,7 @@ public class TreeAdvanced extends Tree
 	}
 	
 	
-	double prunedNode()
+	double prunedNodes()
 	{
 		prunedNodeCaclulation(super.returnRoot());
 		return PrunedCounter;
